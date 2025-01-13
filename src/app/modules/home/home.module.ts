@@ -17,11 +17,11 @@ import { ChartModule } from 'primeng/chart';
     CommonModule,
     HomeRoutingModule,
     DividerModule,
-        StyleClassModule,
-        ChartModule,
-        PanelModule,
-        ButtonModule,
-        ProgressSpinnerModule
+    StyleClassModule,
+    ChartModule,
+    PanelModule,
+    ButtonModule,
+    ProgressSpinnerModule
   ]
 })
 export class HomeModule { }

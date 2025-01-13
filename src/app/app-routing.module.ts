@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
+//import { BackofficeLayoutComponent } from './layout/backoffice-layout/backoffice.layout.component';
+import { NotfoundComponent } from './demo/components/notfound/notfound.component';
 
 const routes: Routes = [
   {
@@ -11,7 +13,8 @@ const routes: Routes = [
   //   loadChildren: () => import('./modules/backoffice/backoffice.module').then(m => m.BackofficeModule),
 
   // },
-
+  { path: 'notfound', component: NotfoundComponent },
+  { path: '**', redirectTo: '/notfound' },
 ];
 
 @NgModule({

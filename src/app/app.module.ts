@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 import { RouterModule } from '@angular/router';
 import { AppLayoutModule } from './layout/app.layout.module';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AppLayoutModule } from './layout/app.layout.module';
     BrowserModule,
     AppLayoutModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]
