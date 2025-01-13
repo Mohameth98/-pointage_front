@@ -23,12 +23,12 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/pointage_front",
+            "outputPath": "dist/sakai-ng",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
-              "zone.js"
-            ],
+                  "zone.js"
+                ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
@@ -101,5 +101,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "b93b8a78-b394-43ea-8c7a-c7973a76652a"
   }
 }
