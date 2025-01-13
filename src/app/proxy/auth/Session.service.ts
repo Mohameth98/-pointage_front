@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { UserDto } from '../users';
-import { JournalResult } from '../journal';
+// import { UserDto } from '../users';
+// import { JournalResult } from '../journal';
 
 @Injectable({
   providedIn: 'root'
@@ -16,28 +16,28 @@ export class SessionService {
     sessionStorage.setItem('userAttributes', JSON.stringify(attributes));
   }
 
-  setAgentAttributes(attributes: UserDto): void {
-    sessionStorage.setItem('agentAttributes', JSON.stringify(attributes));
-  }
+  // setAgentAttributes(attributes: UserDto): void {
+  //   sessionStorage.setItem('agentAttributes', JSON.stringify(attributes));
+  // }
 
-  setJournalAttributes(attributes: JournalResult): void {
-    sessionStorage.setItem('journalAttributes', JSON.stringify(attributes));
-  }
+  // setJournalAttributes(attributes: JournalResult): void {
+  //   sessionStorage.setItem('journalAttributes', JSON.stringify(attributes));
+  // }
 
-  getUserAttributes(): any {
-    const attributes = sessionStorage.getItem('userAttributes');
-    return attributes ? JSON.parse(attributes) : null;
-  }
+  // getUserAttributes(): any {
+  //   const attributes = sessionStorage.getItem('userAttributes');
+  //   return attributes ? JSON.parse(attributes) : null;
+  // }
 
-  getAgentAttributes(): UserDto {
-    const attributes = sessionStorage.getItem('agentAttributes');
-    return attributes ? JSON.parse(attributes) : null;
-  }
+  // getAgentAttributes(): UserDto {
+  //   const attributes = sessionStorage.getItem('agentAttributes');
+  //   return attributes ? JSON.parse(attributes) : null;
+  // }
 
-  getJournalAttributes(): JournalResult {
-    const attributes = sessionStorage.getItem('journalAttributes');
-    return attributes ? JSON.parse(attributes) : null;
-  }
+  // getJournalAttributes(): JournalResult {
+  //   const attributes = sessionStorage.getItem('journalAttributes');
+  //   return attributes ? JSON.parse(attributes) : null;
+  // }
 
 
   clearUserAttributes(): void {

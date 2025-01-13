@@ -14,13 +14,8 @@
     <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button" (click)="layoutService.showProfileSidebar()">
         <i class="pi pi-ellipsis-v"></i>
     </button>
-    <div class="ms-5 mr-3">
-        <span style="font-family: 'Times new Roman', sans-serif; font-size: 18px; color:rgb(226, 228, 235); font-weight: bold; text-shadow: 4px 4px 4px rgba(33, 33, 33, 0.3);">
-            {{structureLibelle}}
-        </span>
-    </div>
+
     <div class="ms-5">
-        <p-badge *ngIf="caisseLibelle" value="{{caisseLibelle}}" size="large" severity="info"></p-badge>
     </div>
 
     <div #topbarmenu class="layout-topbar-menu flex flex-wrap gap-2" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">

@@ -55,33 +55,7 @@ export class AppTopBarComponent implements OnInit{
             sessionStorage.clear();
          } }
     ];
-        this.structureLibelle = this.sessionService.getAgentAttributes().structureLibelle;
-        // this.isLoggedIn = await this.keycloak.isLoggedIn();
-        this.structureLibelle = this.sessionService.getAgentAttributes().structureLibelle;
-
-        const caisseLibelle = this.sessionService.getAgentAttributes()?.caisseLibelle;
-        const date = this.sessionService.getJournalAttributes()?.date || 'Date inconnue';
-        const soldeOuverture = this.sessionService.getJournalAttributes()?.soldeOuverture || 0;
-
-      //   if (caisseLibelle) {
-      //       this.caisseLibelle = `${caisseLibelle}: ${date} - Num Veil: ${soldeOuverture} CFA`;
-      //   }
-
-      //   if (this.isLoggedIn) {
-      //     this.userProfile = await this.keycloak.loadUserProfile();
-      //     this.fullname = this.userProfile.firstName + " " + this.userProfile.lastName;
-      //   }
-      // }
-
-
-
-      // public login() {
-      //   // this.keycloak.login();
-      // }
-
-      // public logout() {
-      //   // this.keycloak.logout();
-      // }
+    
 
 
   }
