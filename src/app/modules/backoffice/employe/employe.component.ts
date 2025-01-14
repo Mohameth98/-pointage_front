@@ -1,6 +1,6 @@
+import { EmployeService } from './../../../proxy/employe/employe.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ProduitDto, ProduitService } from '../../../proxy/produits';
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import jsPDF from 'jspdf';
@@ -25,7 +25,7 @@ export class EmployeComponent implements OnInit {
   @ViewChild('dt') dt?: Table;
 
   constructor(
-    private produitsService: ProduitService,
+    private employeService: EmployeService,
     private fb: FormBuilder,
     private messageService: MessageService
   ) {}
@@ -39,9 +39,11 @@ export class EmployeComponent implements OnInit {
   // Initialiser les colonnes pour le tableau
   private initColumns(): void {
     this.cols = [
-      { field: 'description', header: 'Description' },
-      { field: 'code', header: 'Code' },
-      { field: 'libelle', header: 'Libellé' },
+      { field: 'matricule', header: 'Matricule' },
+      { field: 'nom', header: 'Nom' },
+      { field: 'prenom', header: 'Prenom' },
+      { field: 'poste', header: 'Poste' },
+      { field: 'departement', header: 'Departement' },
     ];
   }
 
@@ -57,7 +59,7 @@ confirmDelete(): void {
   if (this.employe.id !== undefined) {
     this.deleteproduitsDialog = false;
 
-    this.produitsService.delete(this.employe.id).subscribe(
+    this.employeService.delete(this.employe.id).subscribe(
       () => {
         this.getAllEmployes(); // Rafraîchir la liste des produits
         this.messageService.add({
@@ -131,7 +133,7 @@ confirmDelete(): void {
 
     if (this.employe.id) {
         // Si l'ID du produit existe, effectuer une mise à jour
-        this.produitsService.update(this.employe.id, employeData).subscribe(
+        this.employeService.update(this.employe.id, employeData).subscribe(
             () => {
                 this.produitsDialog = false;
                 this.messageService.add({
@@ -156,7 +158,7 @@ confirmDelete(): void {
         );
     } else {
         // Sinon, créer un nouveau produit
-        this.produitsService.save(employeData).subscribe(
+        this.employeService.save(employeData).subscribe(
             () => {
                 this.produitsDialog = false;
                 this.getAllEmployes(); // Rafraîchir la liste des produits
@@ -201,9 +203,9 @@ confirmDelete(): void {
   }
 
   // Éditer un produit existant
-  edit(produit: ProduitDto): void {
-    if (produit.id !== undefined) {
-      this.produitsService.getOneById(produit.id).subscribe(
+  edit(employe: EmployeDto): void {
+    if (employe.id !== undefined) {
+      this.employeService.getOneById(employe.id).subscribe(
         (produitDetails) => {
           this.employe = { ...produitDetails };
           this.buildForm();
@@ -231,7 +233,7 @@ confirmDelete(): void {
   // Charger tous les employe
   private getAllEmployes(): void {
     this.loading = true;
-    this.produitsService.findAll().subscribe(
+    this.employeService.findAll().subscribe(
       (result) => {
         this.employes = result;
         this.loading = false;

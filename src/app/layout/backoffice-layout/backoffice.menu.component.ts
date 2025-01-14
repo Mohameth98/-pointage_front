@@ -24,14 +24,10 @@ export class BackofficeMenuComponent implements OnInit {
                 label: 'Gestion des Parametres',
 
                 items: [
-                    {
-                        label: 'Produits',
-                        icon: 'pi pi-fw pi-angle-right',
-                        routerLink: ['/backoffice/produits']
-                    },
+                    
                     {
                         label: 'Employes',
-                        icon: 'pi pi-fw pi-angle-right',
+                        icon: 'pi pi-fw pi-users',
                         routerLink: ['/backoffice/employe']
                     },
 

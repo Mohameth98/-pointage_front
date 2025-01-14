@@ -17,7 +17,7 @@
           </ng-template>
       </p-toolbar>
       <div *ngIf="loading" class="loading-message">
-          <p>Chargement, veuillez patienter le chargement des produits...</p>
+          <p>Chargement, veuillez patienter le chargement des employes...</p>
           </div>
 
       <p-table #dt [value]="employes" [columns]="cols" responsiveLayout="scroll" [rows]="10"
@@ -28,7 +28,7 @@
           [rowHover]="true" dataKey="id">
           <ng-template pTemplate="caption">
               <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-                  <h5 class="m-0">Gestion des Produits </h5>
+                  <h5 class="m-0">Gestion Des Employes </h5>
                   <span class="block mt-2 md:mt-0 p-input-icon-left">
                       <i class="pi pi-search"></i>
                       <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."
@@ -84,7 +84,7 @@
       </p-table>
   </div>
 
-  <p-dialog [(visible)]="produitsDialog" [style]="{width: '450px'}" header="Saisie les details de employe" [modal]="true"
+  <p-dialog [(visible)]="produitsDialog" [style]="{width: '450px'}" header="Saisie les Details des Employes" [modal]="true"
       class="p-fluid">
       <ng-template pTemplate="content">
           <form [formGroup]="form" (ngSubmit)="saveProduits()">

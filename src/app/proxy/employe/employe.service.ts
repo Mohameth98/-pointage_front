@@ -11,6 +11,7 @@ export class EmployeService{
   private api_host: string = environment.api_host + this.apiName;
   myToken = sessionStorage.getItem("token");
 
+
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -25,7 +26,6 @@ export class EmployeService{
   findAll() {
     return this.httpClient.get<EmployeDto[]>(this.api_host, this.httpOptions);
   }
-
 
   // Sauvegarder une nouvelle actions
   save(item: EmployeDto) {
