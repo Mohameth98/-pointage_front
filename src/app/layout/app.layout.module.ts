@@ -24,7 +24,6 @@ import { SharedModule } from "./shared/shared.module";
         AppLayoutComponent,
     ],
     imports: [
-   // SidebarModule,
     SharedModule
 ],
     exports: [AppLayoutComponent]

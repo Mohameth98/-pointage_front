@@ -8,7 +8,11 @@ import {
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard {}
+export class AuthGuard {
+  constructor(
+     protected readonly router: Router,
+  ) { }
+}
 
 
 // export class AuthGuard extends KeycloakAuthGuard {

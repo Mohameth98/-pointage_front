@@ -16,7 +16,7 @@ import { SessionService } from '../../../proxy/auth/Session.service';
 export class AppTopBarComponent implements OnInit{
     public isLoggedIn = false;
     //public userProfile: KeycloakProfile | null = null;
-    fullname = "";
+    fullname = "Mohameth MBAYE";
     structureLibelle = "";
 
     searchCode: string = '';
@@ -55,7 +55,7 @@ export class AppTopBarComponent implements OnInit{
             sessionStorage.clear();
          } }
     ];
-    
+
 
 
   }

@@ -1,9 +1,9 @@
-<div class="layout-topbar" style="background-color:rgb(11, 33, 82);">
-    <a class="layout-topbar-logo" href="http://digitalpostv2.sn.post:8099/">
-        <img src="assets/layout/images/laposte.jpeg"  alt="La Poste"style="border: raduis 20px;"  class="mr-2"/>
+<div class="layout-topbar" style="background-color:rgb(187, 211, 227);">
+    <a class="layout-topbar-logo" href="">
+        <img src="assets/layout/images/pointage.png"  alt="Pointage"style="border: raduis 20px;"  class="mr-2"/>
 
-        <span style="font-family: 'Times new Roman', sans-serif; font-size: 24px; color:white; font-weight: bold; text-shadow: 4px 4px 4px rgba(33, 33, 33, 0.3);">
-            COMPTABILITE
+        <span style="font-family: 'Times new Roman', sans-serif; font-size: 24px; color:rgb(4, 23, 77); font-weight: bold; text-shadow: 4px 4px 4px rgba(33, 33, 33, 0.3);">
+            Pointage SN
         </span>
     </a>
 
@@ -18,9 +18,24 @@
     <div class="ms-5">
     </div>
 
-    <div #topbarmenu class="layout-topbar-menu flex flex-wrap gap-2" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
-        <i class="pi pi-bell mr-4 p-text-danger" pBadge style="font-size: 2rem" value="2" severity="danger"></i>
-        <p-splitButton label="{{fullname}}" icon="pi pi-user" [model]="items" styleClass="p-text-info"></p-splitButton>
+    <div
+  #topbarmenu
+  class="layout-topbar-menu flex flex-wrap gap-2"
+  [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}"
+>
+  <i
+    class="pi pi-bell mr-4 p-text-danger"
+    pBadge
+    style="font-size: 2rem"
+    value="2"
+    severity="danger"
+  ></i>
+  <p-splitButton
+    label="{{ fullname }}"
+    icon="pi pi-user"
+    [model]="items"
+    styleClass="p-button-outlined p-text-info"
+  ></p-splitButton>
+</div>
 
-    </div>
 </div>

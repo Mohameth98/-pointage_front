@@ -5,8 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { RouterModule } from '@angular/router';
-import { AppLayoutModule } from './layout/app.layout.module';
 import { ToastModule } from 'primeng/toast';
+import { AppLayoutModule } from './layout/app.layout.module';
+import { BackofficeLayoutModule } from './layout/backoffice-layout/backoffice.layout.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ToastModule } from 'primeng/toast';
   imports: [
     BrowserModule,
     AppLayoutModule,
+    BackofficeLayoutModule,
     AppRoutingModule,
     RouterModule,
     ToastModule
