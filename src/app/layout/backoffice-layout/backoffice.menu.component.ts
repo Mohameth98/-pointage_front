@@ -21,35 +21,20 @@ export class BackofficeMenuComponent implements OnInit {
                 ]
             },
             {
-                label: 'Gestion Des Comptes',
+                label: 'Gestion des Parametres',
 
                 items: [
                     {
-                        label: 'Compte Boite Postale',
+                        label: 'Produits',
                         icon: 'pi pi-fw pi-angle-right',
-                        routerLink: ['/backoffice/compte-bp']
+                        routerLink: ['/backoffice/produits']
                     },
                     {
-                        label: 'Compte Budget',
+                        label: 'Employes',
                         icon: 'pi pi-fw pi-angle-right',
-                        routerLink: ['/backoffice/compte-budget']
-                    },
-                    {
-                        label: 'Compte Ecom',
-                        icon: 'pi pi-fw pi-angle-right',
-                        routerLink: ['/backoffice/compte-ecom']
-                    },
-                    {
-                        label: 'Compte Produit',
-                        icon: 'pi pi-fw pi-angle-right',
-                        routerLink: ['/backoffice/compte-produit']
+                        routerLink: ['/backoffice/employe']
                     },
 
-                    {
-                        label: 'Service Regularisation',
-                        icon: 'pi pi-fw pi-angle-right',
-                        routerLink: ['/backoffice/service-regularisation']
-                    }
                 ],
 
             },
@@ -62,23 +47,7 @@ export class BackofficeMenuComponent implements OnInit {
                         label: 'Paramétres',
                         icon: 'pi pi-fw pi-cog',
                         items: [
-                            {
-                                label: 'Produits',
-                                icon: 'pi pi-fw pi-angle-right',
-                                routerLink: ['/backoffice/produits']
-                            },
-                            
-                            {
-                                label: 'Monnaie',
-                                icon: 'pi pi-fw pi-angle-right',
-                                routerLink: ['/backoffice/monnaies']
-                            },
-                            {
-                                label: 'Type Régularisation',
-                                icon: 'pi pi-fw pi-angle-right',
-                                routerLink: ['/backoffice/type-regularisation']
-                            },
-
+                           
                             {
                                 label: 'Type Service',
                                 icon: 'pi pi-fw pi-angle-right',

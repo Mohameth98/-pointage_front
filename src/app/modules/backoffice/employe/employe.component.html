@@ -1,0 +1,160 @@
+<div class="col-12">
+  <div class="card px-6 py-6" style="background-color: rgb(235, 242, 246);">
+      <p-toast></p-toast>
+      <p-toolbar styleClass="mb-4">
+          <ng-template pTemplate="left">
+              <div class="my-2">
+                  <button pButton pRipple label="Nouveau" icon="pi pi-plus" class="p-button-success mr-2"
+                      (click)="openNew()"></button>
+              </div>
+          </ng-template>
+          <ng-template pTemplate="right">
+              <button pButton pRipple label="Export CSV" icon="pi pi-upload" class="p-button-help mr-3"
+                  (click)="dt.exportCSV()"></button>
+
+              <button pButton pRipple label="Export PDF" icon="pi pi-file-pdf" class="p-button-help"
+                  (click)="exportPDF()"></button>
+          </ng-template>
+      </p-toolbar>
+      <div *ngIf="loading" class="loading-message">
+          <p>Chargement, veuillez patienter le chargement des produits...</p>
+          </div>
+
+      <p-table #dt [value]="employes" [columns]="cols" responsiveLayout="scroll" [rows]="10"
+          styleClass="p-datatable-gridlines"
+          [globalFilterFields]="['code','libelle']" [paginator]="true"
+          [rowsPerPageOptions]="[4,10,20,30]" [showCurrentPageReport]="true"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" selectionMode="multiple"
+          [rowHover]="true" dataKey="id">
+          <ng-template pTemplate="caption">
+              <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                  <h5 class="m-0">Gestion des Produits </h5>
+                  <span class="block mt-2 md:mt-0 p-input-icon-left">
+                      <i class="pi pi-search"></i>
+                      <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."
+                          class="w-full sm:w-auto" />
+                  </span>
+              </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+              <tr>
+                  <th pSortableColumn="matricule">Matricule <p-sortIcon field="matricule"></p-sortIcon></th>
+                  <th pSortableColumn="nom">nom <p-sortIcon field="nom"></p-sortIcon></th>
+                  <th pSortableColumn="prenom">Prenom <p-sortIcon field="prenom"></p-sortIcon></th>
+                  <th pSortableColumn="poste">Poste <p-sortIcon field="poste"></p-sortIcon></th>
+                  <th pSortableColumn="departement">Departement <p-sortIcon field="departement"></p-sortIcon></th>
+                  <th pSortableColumn="action">Action<p-sortIcon field="action"></p-sortIcon></th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-employe>
+              <tr>
+                  <td style=" min-width:15rem;">
+                      {{employe.matricule}}
+                  </td>
+
+                  <td style=" min-width:15rem;">
+                      {{employe.nom}}
+                  </td>
+
+                  <td style=" min-width:10rem;"><span class="p-column-title">Code</span>
+                      {{employe.prenom || employe.id}}
+                  </td>
+
+                  <td style=" min-width:15rem;">
+                    {{employe.poste}}
+                  </td>
+
+                  <td style=" min-width:15rem;">
+                    {{employe.departement}}
+                  </td>
+                  <td>
+                      <div class="flex">
+                          <button pbutton pripple icon="pi pi-pencil"
+                              class=" p-button p-component p-button-text p-button-icon-only p-button-info mr-2"
+                              (click)="edit(employe)"><span class="p-button-icon pi pi-pencil"
+                                  aria-hidden="true"></span></button>
+                          <button pbutton pripple icon="pi pi-trash"
+                              class=" p-button p-component p-button-text p-button-icon-only p-button-danger"
+                              (click)="deleteProduits(employe)"><span class="p-button-icon pi pi-trash"
+                                  aria-hidden="true"></span></button>
+                      </div>
+                  </td>
+              </tr>
+          </ng-template>
+      </p-table>
+  </div>
+
+  <p-dialog [(visible)]="produitsDialog" [style]="{width: '450px'}" header="Saisie les details de employe" [modal]="true"
+      class="p-fluid">
+      <ng-template pTemplate="content">
+          <form [formGroup]="form" (ngSubmit)="saveProduits()">
+              <div class="field">
+                  <label for="name">Matricule</label>
+                  <input type="text" pInputText id="name" formControlName="matricule" autofocus />
+              </div>
+              <div class="field">
+                  <label for="name">Nom</label>
+                  <input type="text" pInputText id="name" formControlName="nom" autofocus />
+              </div>
+
+              <div class="field">
+                <label for="name">Prenom</label>
+                <input type="text" pInputText id="name" formControlName="prenom" autofocus />
+              </div>
+
+              <div class="field">
+                <label for="name">Poste</label>
+                <input type="text" pInputText id="name" formControlName="poste" autofocus />
+              </div>
+
+              <div class="field">
+                <label for="name">Departement</label>
+                <input type="text" pInputText id="name" formControlName="departement" autofocus />
+              </div>
+
+
+          </form>
+      </ng-template>
+      <ng-template pTemplate="footer">
+          <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-outlined"
+          style="font-weight: bold; border-radius: 20px; padding: 10px 20px;" (click)="hideDialog()">
+         </button>
+
+          <button pButton pRipple label="Sauvegarder" icon="pi pi-check" class="p-button-rounded p-button-success"
+              style="font-weight: bold; border-radius: 20px; padding: 10px 20px;" (click)="saveProduits()"
+              [disabled]="form.invalid">
+          </button>
+      </ng-template>
+  </p-dialog>
+
+  <p-dialog [(visible)]="deleteproduitsDialog"
+  header="Suppression de l'employe"
+  [modal]="true"
+  [closable]="false"
+  [style]="{width:'30vw'}"
+  [styleClass]="'p-dialog-custom p-shadow-5'">
+  <div class="flex align-items-center justify-content-center" style="text-align: center; padding: 1rem;">
+      <i class="pi pi-exclamation-circle" style="font-size: 1.5rem; color: #FF5252;"></i>
+      <div style="margin-left: 1rem;">
+          <h2 style="color: #495057; font-weight: 600;">Êtes-vous sûr ?</h2>
+          <p style="color: #6c757d;">Vous êtes sur le point de supprimer <b>{{employe.matricule}}</b>. Cet employe est irréversible.</p>
+      </div>
+  </div>
+      <ng-template pTemplate="footer">
+          <div class="flex justify-content-end mt-3">
+              <button pButton pRipple icon="pi pi-times"
+                      class="p-button-rounded p-button-text"
+                      label="Annuler"
+                      style="border: 1px solid #ddd; color: #495057;"
+                      (click)="deleteproduitsDialog = false"></button>
+              <button pButton pRipple icon="pi pi-check"
+                      class="p-button-rounded p-button-danger"
+                      label="Supprimer"
+                      (click)="confirmDelete()"></button>
+          </div>
+      </ng-template>
+  </p-dialog>
+
+
+</div>
+
