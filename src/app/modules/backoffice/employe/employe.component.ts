@@ -89,7 +89,7 @@ confirmDelete(): void {
     });
   }
 }
- //
+ // Pour Filtrer la table
     onGlobalFilter(table: Table, event: Event) {
       table.filterGlobal(
           (event.target as HTMLInputElement).value,
@@ -114,20 +114,22 @@ confirmDelete(): void {
     this.buildForm();
     this.produitsDialog = true;
   }
-
+ // Fonction permettant de faire disparaitre le pop-pup
   hideDialog() {
     this.produitsDialog = false;
   }
+
+  //Permet d'ajouter un employe
   saveProduits(): void {
-    if (this.form.invalid) {
-        this.messageService.add({
-            severity: 'warn',
-            summary: 'Avertissement',
-            detail: 'Veuillez remplir tous les champs obligatoires.',
-            life: 3000,
-        });
-        return;
-    }
+        if (this.form.invalid) {
+            this.messageService.add({
+                severity: 'warn',
+                summary: 'Avertissement',
+                detail: 'Veuillez remplir tous les champs obligatoires.',
+                life: 3000,
+            });
+            return;
+        }
 
     const employeData = this.form.value;
 

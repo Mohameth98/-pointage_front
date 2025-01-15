@@ -14,7 +14,7 @@ import { KeycloakService } from 'keycloak-angular';
 export class AppTopBarComponent implements OnInit{
     public isLoggedIn = false;
     public userProfile: KeycloakProfile | null = null;
-    fullname = "";
+    fullname = "Mohameth MBAYE";
     loading: Boolean= false;
 
 
@@ -33,9 +33,7 @@ export class AppTopBarComponent implements OnInit{
 
     constructor(public layoutService: LayoutService,
        private router:Router,
-       private sessionService: SessionService,
        private readonly keycloak: KeycloakService,
-       private messageService: MessageService,
     ) { }
     public async ngOnInit() {
        const userRoles = this.keycloak.getUserRoles();
@@ -54,6 +52,7 @@ export class AppTopBarComponent implements OnInit{
       this.userProfile = await this.keycloak.loadUserProfile();
       this.fullname = this.userProfile.firstName + " " + this.userProfile.lastName;
     }
+    console.log(this.fullname)
 
   }
 

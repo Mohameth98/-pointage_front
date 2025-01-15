@@ -1,13 +1,13 @@
-<style>
+<!-- <style>
     .text-xl{text-align: center; margin-top: 5%;}
     .card{height: 90%;}
     .col-3{width: 21%; margin-left: 3%;margin-top: 1%;}
     .card:hover{cursor: pointer;background-color:rgb(252, 252, 252);
          height: 88%;}
     i{color: rgb(22, 22, 140);}
- </style>
+ </style> -->
  <div class="grid">
-    <div class="col-3 lg:col-3 xl:col-3"  >
+    <div class="col-3 lg:col-3 xl:col-3"  *ngIf="isAdmin()">
         <div class="card">
             <a routerLink="/backoffice">
             <div class="col justify-content-between">
