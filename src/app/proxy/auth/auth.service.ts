@@ -7,7 +7,7 @@ import { TokenService } from './token.service';
 
 const TOKEN_KEY = 'token';
 const REFRESHTOKEN_KEY = 'refresh_token';
-const AUTH_API = 'http://10.10.3.138:8080/realms/digitalpost/protocol/openid-connect/token';
+const AUTH_API = 'http://localhost:8080/realms/digitalpost/protocol/openid-connect/token';
 
 @Injectable({
   providedIn: 'root',

@@ -12,7 +12,7 @@ import { EmployeDto } from '../../../proxy/employe';
   styleUrl: './employe.component.scss'
 })
 export class EmployeComponent implements OnInit {
-  form!: FormGroup; // Utilisation de `!` car `form` est initialisé dans `ngOnInit`.
+  form!: FormGroup;
   employes: EmployeDto[] = [];
   employe: EmployeDto = {};
   produitsDialog = false;
@@ -84,7 +84,7 @@ confirmDelete(): void {
     this.messageService.add({
       severity: 'warn',
       summary: 'Avertissement',
-      detail: 'Aucun produit sélectionné pour suppression.',
+      detail: 'Aucun employe sélectionné pour suppression.',
       life: 3000,
     });
   }
@@ -149,7 +149,7 @@ confirmDelete(): void {
                 this.messageService.add({
                     severity: 'error',
                     summary: 'Erreur',
-                    detail: 'Erreur lors de la modification du produit.',
+                    detail: 'Erreur lors de la modification du Employé.',
                     life: 3000,
                 });
                 console.error('Erreur de mise à jour :', error);
@@ -165,7 +165,7 @@ confirmDelete(): void {
                 this.messageService.add({
                     severity: 'success',
                     summary: 'Succès',
-                    detail: 'employe ajouté avec succès.',
+                    detail: 'Employé ajouté avec succès.',
                     life: 3000,
                 });
                 this.employe = {}; // Réinitialiser l'objet produit
@@ -174,7 +174,7 @@ confirmDelete(): void {
                 this.messageService.add({
                     severity: 'error',
                     summary: 'Erreur',
-                    detail: 'Erreur lors de l\'ajout du produit.',
+                    detail: 'Erreur lors de l\'ajout du Employé.',
                     life: 3000,
                 });
                 console.error('Erreur d\'ajout :', error);
@@ -215,7 +215,7 @@ confirmDelete(): void {
           this.messageService.add({
             severity: 'error',
             summary: 'Erreur',
-            detail: 'Impossible de charger les détails du employe.',
+            detail: 'Impossible de charger les détails du Employé.',
             life: 3000,
           });
         }
@@ -242,7 +242,7 @@ confirmDelete(): void {
         this.messageService.add({
           severity: 'error',
           summary: 'Erreur',
-          detail: 'Erreur lors du chargement des produits.',
+          detail: 'Erreur lors du chargement des Employés.',
           life: 3000,
         });
         this.loading = false;

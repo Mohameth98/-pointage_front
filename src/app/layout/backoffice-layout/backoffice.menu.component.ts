@@ -24,9 +24,13 @@ export class BackofficeMenuComponent implements OnInit {
                 label: 'Gestion des Parametres',
 
                 items: [
-                    
                     {
-                        label: 'Employes',
+                        label: 'Pointages',
+                        icon: 'pi pi-fw pi-pen-to-square',
+                        routerLink: ['/backoffice/pointage']
+                    },
+                    {
+                        label: 'Employés',
                         icon: 'pi pi-fw pi-users',
                         routerLink: ['/backoffice/employe']
                     },
@@ -43,7 +47,7 @@ export class BackofficeMenuComponent implements OnInit {
                         label: 'Paramétres',
                         icon: 'pi pi-fw pi-cog',
                         items: [
-                           
+
                             {
                                 label: 'Type Service',
                                 icon: 'pi pi-fw pi-angle-right',
