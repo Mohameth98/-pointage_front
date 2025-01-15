@@ -3,7 +3,7 @@ export const environment = {
       api_host: "http://localhost:8082/api/",
       locale_id: 'fr-FR',
       keycloak: {
-        authority: 'https://localhost:8080',
+        authority: 'http://localhost:8080',
         redirectUri: 'http://localhost:4200/*',
         postLogoutRedirectUri: 'http://localhost:4200/logout',
         realm: 'pointage_back_dev',

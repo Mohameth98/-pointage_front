@@ -16,7 +16,7 @@ export class AppTopBarComponent implements OnInit{
     public userProfile: KeycloakProfile | null = null;
     fullname = "";
     loading: Boolean= false;
-  
+
 
 
     years: { label: string; value: number }[] = [];
