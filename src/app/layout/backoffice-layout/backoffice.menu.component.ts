@@ -25,9 +25,9 @@ export class BackofficeMenuComponent implements OnInit {
 
                 items: [
                     {
-                        label: 'Pointages',
+                        label: 'Statuts',
                         icon: 'pi pi-fw pi-pen-to-square',
-                        routerLink: ['/backoffice/pointage']
+                        routerLink: ['/backoffice/statut']
                     },
                     {
                         label: 'Employés',

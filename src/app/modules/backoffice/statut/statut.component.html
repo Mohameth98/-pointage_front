@@ -19,7 +19,7 @@
           <p>Chargement, veuillez patienter le chargement des Employés...</p>
           </div>
 
-      <p-table #dt [value]="employes" [columns]="cols" responsiveLayout="scroll" [rows]="10"
+      <p-table #dt [value]="statuts" [columns]="cols" responsiveLayout="scroll" [rows]="10"
           styleClass="p-datatable-gridlines"
           [globalFilterFields]="['code','libelle']" [paginator]="true"
           [rowsPerPageOptions]="[4,10,20,30]" [showCurrentPageReport]="true"
@@ -27,7 +27,7 @@
           [rowHover]="true" dataKey="id">
           <ng-template pTemplate="caption">
               <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-                  <h5 class="m-0">Gestion Des Employés </h5>
+                  <h5 class="m-0">Gestion Des Statut </h5>
                   <span class="block mt-2 md:mt-0 p-input-icon-left">
                       <i class="pi pi-search"></i>
                       <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."
@@ -37,36 +37,26 @@
           </ng-template>
           <ng-template pTemplate="header">
             <tr class="p-datatable-thead">
-              <th pSortableColumn="matricule" class="p-datatable-header p-bg-info">Matricule <p-sortIcon field="matricule"></p-sortIcon></th>
-              <th pSortableColumn="nom" class="p-datatable-header p-bg-info">Nom <p-sortIcon field="nom"></p-sortIcon></th>
-              <th pSortableColumn="prenom" class="p-datatable-header p-bg-info">Prénom <p-sortIcon field="prenom"></p-sortIcon></th>
-              <th pSortableColumn="poste" class="p-datatable-header p-bg-info">Poste <p-sortIcon field="poste"></p-sortIcon></th>
-              <th pSortableColumn="departement" class="p-datatable-header p-bg-info">Département <p-sortIcon field="departement"></p-sortIcon></th>
+              <th pSortableColumn="libelle" class="p-datatable-header p-bg-info">Libelle <p-sortIcon field="libelle"></p-sortIcon></th>
+              <th pSortableColumn="couleur" class="p-datatable-header p-bg-info">Couleur <p-sortIcon field="couleur"></p-sortIcon></th>
+              <th pSortableColumn="description" class="p-datatable-header p-bg-info">Description <p-sortIcon field="description"></p-sortIcon></th>
               <th pSortableColumn="action" class="p-datatable-header p-bg-info">Action <p-sortIcon field="action"></p-sortIcon></th>
             </tr>
           </ng-template>
 
-          <ng-template pTemplate="body" let-employe>
+          <ng-template pTemplate="body" let-statut>
               <tr>
+                <td style="min-width:15rem;">
+                  <p-tag [severity]="getSeverity(statut.couleur)" [value]="statut.libelle"></p-tag>
+                </td>
+                
                   <td style=" min-width:15rem;">
-                      {{employe.matricule}}
+                    {{statut.couleur}}
+                  </td>
+                  <td style=" min-width:15rem;">
+                    {{statut.description}}
                   </td>
 
-                  <td style=" min-width:15rem;">
-                      {{employe.nom}}
-                  </td>
-
-                  <td style=" min-width:10rem;"><span class="p-column-title">Code</span>
-                      {{employe.prenom || employe.id}}
-                  </td>
-
-                  <td style=" min-width:15rem;">
-                    {{employe.poste}}
-                  </td>
-
-                  <td style=" min-width:15rem;">
-                    {{employe.departement}}
-                  </td>
                   <td>
                       <div class="flex">
                         <p-button
@@ -76,9 +66,8 @@
                          [raised]="true"
                          severity="info"
                          styleClass="p-button-text p-button-icon-only mr-2"
-                         (click)="edit(employe)">
+                         (click)="edit(statut)">
                         </p-button>
-
 
                         <p-button
                         icon="pi pi-trash"
@@ -87,7 +76,7 @@
                         [raised]="true"
                         severity="danger"
                         styleClass="p-button-icon-only ml-2"
-                        (click)="deleteProduits(employe)">
+                        (click)="deleteStatuts(statut)">
                     </p-button>
 
                       </div>
@@ -97,35 +86,36 @@
       </p-table>
   </div>
 
-  <p-dialog [(visible)]="produitsDialog" [style]="{width: '450px'}" header="Saisie les Details des Employes" [modal]="true"
+  <p-dialog [(visible)]="statutsDialog" [style]="{width: '450px'}" header="Saisie les Details des Statuts" [modal]="true"
       class="p-fluid">
       <ng-template pTemplate="content">
-          <form [formGroup]="form" (ngSubmit)="saveProduits()">
+          <form [formGroup]="form" (ngSubmit)="saveStatuts()">
               <div class="field">
-                  <label for="name">Matricule</label>
-                  <input type="text" pInputText id="name" formControlName="matricule" autofocus />
-              </div>
-              <div class="field">
-                  <label for="name">Nom</label>
-                  <input type="text" pInputText id="name" formControlName="nom" autofocus />
+                <label for="name">Libelle</label>
+                <input type="text" pInputText id="name" formControlName="libelle" autofocus />
               </div>
 
               <div class="field">
-                <label for="name">Prenom</label>
-                <input type="text" pInputText id="name" formControlName="prenom" autofocus />
-              </div>
+                <label for="couleur">Couleur</label>
+                <p-dropdown
+                    id="couleur"
+                    formControlName="couleur"
+                    [options]="typeOptions"
+                    placeholder="Sélectionnez un Couleur">
+                </p-dropdown>
+            </div>
 
               <div class="field">
-                <label for="name">Poste</label>
-                <input type="text" pInputText id="name" formControlName="poste" autofocus />
+                <label for="description">Description</label>
+                <textarea
+                  id="description"
+                  pInputTextarea
+                  formControlName="description"
+                  rows="4"
+                  cols="30"
+                  autofocus>
+                </textarea>
               </div>
-
-              <div class="field">
-                <label for="name">Departement</label>
-                <input type="text" pInputText id="name" formControlName="departement" autofocus />
-              </div>
-
-
           </form>
       </ng-template>
       <ng-template pTemplate="footer">
@@ -134,14 +124,14 @@
          </button>
 
           <button pButton pRipple label="Sauvegarder" icon="pi pi-check" class="p-button-rounded p-button-success"
-              style="font-weight: bold; border-radius: 20px; padding: 10px 20px;" (click)="saveProduits()"
+              style="font-weight: bold; border-radius: 20px; padding: 10px 20px;" (click)="saveStatuts()"
               [disabled]="form.invalid">
           </button>
       </ng-template>
   </p-dialog>
 
-  <p-dialog [(visible)]="deleteproduitsDialog"
-  header="Suppression de l'employe"
+  <p-dialog [(visible)]="deletestatutsDialog"
+  header="Suppression du Statut"
   [modal]="true"
   [closable]="false"
   [style]="{width:'30vw'}"
@@ -150,7 +140,7 @@
       <i class="pi pi-exclamation-circle" style="font-size: 1.5rem; color: #FF5252;"></i>
       <div style="margin-left: 1rem;">
           <h2 style="color: #495057; font-weight: 600;">Êtes-vous sûr ?</h2>
-          <p style="color: #6c757d;">Vous êtes sur le point de supprimer <b>{{employe.matricule}}</b>. Cet employe est irréversible.</p>
+          <p style="color: #6c757d;">Vous êtes sur le point de supprimer <b>{{statut.libelle}}</b>. Cet employe est irréversible.</p>
       </div>
   </div>
       <ng-template pTemplate="footer">
@@ -159,7 +149,7 @@
                       class="p-button-rounded p-button-text"
                       label="Annuler"
                       style="border: 1px solid #ddd; color: #495057;"
-                      (click)="deleteproduitsDialog = false"></button>
+                      (click)="deletestatutsDialog = false"></button>
               <button pButton pRipple icon="pi pi-check"
                       class="p-button-rounded p-button-danger"
                       label="Supprimer"
