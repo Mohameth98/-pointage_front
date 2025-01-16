@@ -46,13 +46,16 @@
 
           <ng-template pTemplate="body" let-statut>
               <tr>
-                <td style="min-width:15rem;">
-                  <p-tag [severity]="getSeverity(statut.couleur)" [value]="statut.libelle"></p-tag>
-                </td>
-                
+
+
                   <td style=" min-width:15rem;">
                     {{statut.couleur}}
                   </td>
+
+                  <td style="min-width:15rem;">
+                    <p-tag [severity]="getSeverity(statut.couleur)" [value]="statut.libelle"></p-tag>
+                  </td>
+                  
                   <td style=" min-width:15rem;">
                     {{statut.description}}
                   </td>

@@ -38,8 +38,8 @@ export class StatutComponent implements OnInit {
 
     this.typeOptions =  [
       { label: 'Vert - A l\'heure', value: 'Vert' },
-      { label: 'Rouge - En Absence', value: 'Rouge' },
-      { label: 'Bleu - Rentre avant l\'heure', value: 'Bleu' },
+      { label: 'Rouge - En Absence', value: 'rouge' },
+      { label: 'Bleu - Rentre avant l\'heure', value: 'bleu' },
       { label: 'Jaune - En Retard', value: 'Jaune' },
   ];
   }
@@ -68,7 +68,7 @@ getSeverity(couleur: string): "success" | "info" | "warning" | "danger" | "secon
       return 'info';
     case 'jaune':  // 'warn' doit être remplacé par 'warning'
       return 'warning';
-    case 'Rouge':
+    case 'rouge':
       return 'danger';  // 'error' est mappé à 'danger' dans PrimeNG
     default:
       return undefined;  // ou 'info' si vous préférez une valeur par défaut
