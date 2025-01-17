@@ -1,0 +1,54 @@
+/* Style de la toolbar */
+.p-toolbar.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+/* Style du conteneur des informations */
+.p-toolbar .my-4 {
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+/* Liste sans puces */
+.p-toolbar ul.list-none {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Style de chaque élément de la liste */
+.p-toolbar li.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 1rem;
+}
+
+/* Hover sur les éléments de la liste */
+.p-toolbar li.flex:hover {
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease;
+}
+
+/* Style des titres (Prénom et Nom, Poste) */
+.p-toolbar li span.text-sm.text-gray-700 {
+  font-size: 0.875rem;
+  color: #4b4b4b;
+}
+
+.p-toolbar li span.text-lg.text-gray-900 {
+  font-size: 1.125rem;
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+/* Dernier élément de la liste sans bordure */
+.p-toolbar li:last-child {
+  border-bottom: none;
+}

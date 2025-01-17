@@ -28,6 +28,7 @@
       {
         "document-title": "off"
       }
-    ]
+    ],
+    "axe/forms": "off"
   }
 }

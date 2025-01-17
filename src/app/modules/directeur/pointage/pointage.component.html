@@ -4,7 +4,7 @@
       <p-toolbar styleClass="mb-4">
         <ng-template pTemplate="left">
             <div class="my-2">
-              <p-button label="Nouveau" [raised]="true" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()" severity="success"/>
+              <p-button label="Pointez l'agent" [raised]="true" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()" severity="success"/>
             </div>
         </ng-template>
         <ng-template pTemplate="right">
@@ -13,10 +13,10 @@
         </ng-template>
     </p-toolbar>
       <div *ngIf="loading" class="loading-message">
-          <p>Chargement, veuillez patienter le chargement des Employés...</p>
+          <p>Chargement, veuillez patienter le chargement des Pointages...</p>
           </div>
 
-      <p-table #dt [value]="employes" [columns]="cols" responsiveLayout="scroll" [rows]="10"
+      <p-table #dt [value]="pointages" [columns]="cols" responsiveLayout="scroll" [rows]="10"
           styleClass="p-datatable-gridlines"
           [globalFilterFields]="['code','libelle']" [paginator]="true"
           [rowsPerPageOptions]="[4,10,20,30]" [showCurrentPageReport]="true"
@@ -24,7 +24,7 @@
           [rowHover]="true" dataKey="id">
           <ng-template pTemplate="caption">
               <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-                  <h5 class="m-0">Gestion Des Employés </h5>
+                  <h5 class="m-0">Gestion Des Pointages </h5>
                   <span class="block mt-2 md:mt-0 p-input-icon-left">
                       <i class="pi pi-search"></i>
                       <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."
@@ -34,52 +34,45 @@
           </ng-template>
           <ng-template pTemplate="header">
             <tr class="p-datatable-thead">
-              <th pSortableColumn="matricule" class="p-datatable-header p-bg-info">Matricule <p-sortIcon field="matricule"></p-sortIcon></th>
-              <th pSortableColumn="nom" class="p-datatable-header p-bg-info">Nom <p-sortIcon field="nom"></p-sortIcon></th>
-              <th pSortableColumn="prenom" class="p-datatable-header p-bg-info">Prénom <p-sortIcon field="prenom"></p-sortIcon></th>
-              <th pSortableColumn="poste" class="p-datatable-header p-bg-info">Poste <p-sortIcon field="poste"></p-sortIcon></th>
-              <th pSortableColumn="departement" class="p-datatable-header p-bg-info">Département <p-sortIcon field="departement"></p-sortIcon></th>
+              <th pSortableColumn="employe" class="p-datatable-header p-bg-info">Employe <p-sortIcon field="employe"></p-sortIcon></th>
+              <th pSortableColumn="date" class="p-datatable-header p-bg-info">Date <p-sortIcon field="date"></p-sortIcon></th>
+              <th pSortableColumn="heure_entree" class="p-datatable-header p-bg-info">heure d'entree <p-sortIcon field="heure_entree"></p-sortIcon></th>
+              <th pSortableColumn="statusLibelle" class="p-datatable-header p-bg-info">Etat <p-sortIcon field="statusLibelle"></p-sortIcon></th>
+              <th pSortableColumn="heure_sortie" class="p-datatable-header p-bg-info">heure de sortie <p-sortIcon field="heure_sortie"></p-sortIcon></th>
+              <th pSortableColumn="duree_travaillee" class="p-datatable-header p-bg-info">Duree Travaillee <p-sortIcon field="duree_travaillee"></p-sortIcon></th>
               <th pSortableColumn="action" class="p-datatable-header p-bg-info">Action <p-sortIcon field="action"></p-sortIcon></th>
             </tr>
           </ng-template>
 
-          <ng-template pTemplate="body" let-employe>
+          <ng-template pTemplate="body" let-pointage>
               <tr>
-                  <td style=" min-width:15rem;">
-                      {{employe.matricule}}
-                  </td>
+                <td style="min-width:15rem;">
+                  {{ pointage.employesPrenom }} {{ pointage.employesNom }}
+              </td>
 
-                  <td style=" min-width:15rem;">
-                      {{employe.nom}}
+                <td style="min-width:15rem;">
+                  {{ pointage.date | date: 'dd/MM/yyyy' }}
+              </td>
+
+                <td style="min-width:15rem;">
+                    {{ pointage.heure_entree }}
+                </td>
+
+
+                  <td style="min-width:15rem;">
+                    <p-tag [severity]="getSeverity(pointage.statusCouleur)" [value]="pointage.statusLibelle"></p-tag>
                   </td>
 
                   <td style=" min-width:10rem;"><span class="p-column-title">Code</span>
-                      {{employe.prenom || employe.id}}
+                      {{pointage.heure_sortie || pointage.id}}
                   </td>
 
                   <td style=" min-width:15rem;">
-                    {{employe.poste}}
+                    {{pointage.duree_travaillee}}
                   </td>
 
-                  <td style=" min-width:15rem;">
-                    {{employe.departement}}
-                  </td>
                   <td>
-
-
                       <div class="flex">
-
-                        <a pButton
-                        label=""
-                        icon="pi pi-info-circle"
-                        [text]="true"
-                        [rounded]="true"
-                        [raised]="true"
-                        [routerLink]="['/backoffice/details-employe', employe.id]"
-                        class="p-element p-button-text p-button p-component p-button-icon-only mr-3">
-                     </a>
-
-
                         <p-button
                          icon="pi pi-pencil"
                          [rounded]="true"
@@ -87,7 +80,7 @@
                          [raised]="true"
                          severity="info"
                          styleClass="p-button-text p-button-icon-only mr-2"
-                         (click)="edit(employe)">
+                         (click)="edit(pointage)">
                         </p-button>
 
 
@@ -98,7 +91,7 @@
                         [raised]="true"
                         severity="danger"
                         styleClass="p-button-icon-only ml-2"
-                        (click)="deleteProduits(employe)">
+                        (click)="deleteProduits(pointage)">
                     </p-button>
 
                       </div>
@@ -108,33 +101,50 @@
       </p-table>
   </div>
 
-  <p-dialog [(visible)]="produitsDialog" [style]="{width: '450px'}" header="Saisie les Details des Employes" [modal]="true"
+  <p-dialog [(visible)]="pointagesDialog" [style]="{width: '450px'}" header="Saisie les Details des Employes" [modal]="true"
       class="p-fluid">
       <ng-template pTemplate="content">
           <form [formGroup]="form" (ngSubmit)="saveProduits()">
+            <div class="field">
+              <label for="employe">Employé</label>
+              <p-dropdown
+                id="employe"
+                formControlName="fullname"
+                [options]="employes"
+                optionLabel="fullname"
+                placeholder="Sélectionnez un employé"
+                [autoDisplayFirst]="false"
+                [filter]="true"
+                filterPlaceholder="Rechercher un employé"
+                [showClear]="true">
+              </p-dropdown>
+            </div>
+
               <div class="field">
-                  <label for="name">Matricule</label>
-                  <input type="text" pInputText id="name" formControlName="matricule" autofocus />
+                  <label for="name">date</label>
+                  <input type="text" pInputText id="name" formControlName="date" autofocus />
               </div>
               <div class="field">
-                  <label for="name">Nom</label>
-                  <input type="text" pInputText id="name" formControlName="nom" autofocus />
+                  <label for="name">Heure d'entree</label>
+                  <input type="text" pInputText id="name" formControlName="heure_entree" autofocus />
               </div>
 
               <div class="field">
-                <label for="name">Prenom</label>
-                <input type="text" pInputText id="name" formControlName="prenom" autofocus />
+                <label for="name">Etat</label>
+                <input type="text" pInputText id="statutId" formControlName="statutId" autofocus />
+            </div>
+
+              <div class="field">
+                <label for="name">Heure De Sortie</label>
+                <input type="text" pInputText id="name" formControlName="heure_sortie" autofocus />
               </div>
 
               <div class="field">
-                <label for="name">Poste</label>
-                <input type="text" pInputText id="name" formControlName="poste" autofocus />
+                <label for="name">Duree de Travaillee</label>
+                <input type="text" pInputText id="name" formControlName="duree_travaillee" autofocus />
               </div>
 
-              <div class="field">
-                <label for="name">Departement</label>
-                <input type="text" pInputText id="name" formControlName="departement" autofocus />
-              </div>
+
 
 
           </form>
@@ -161,7 +171,7 @@
       <i class="pi pi-exclamation-circle" style="font-size: 1.5rem; color: #FF5252;"></i>
       <div style="margin-left: 1rem;">
           <h2 style="color: #495057; font-weight: 600;">Êtes-vous sûr ?</h2>
-          <p style="color: #6c757d;">Vous êtes sur le point de supprimer <b>{{employe.matricule}}</b>. Cet employe est irréversible.</p>
+          <p style="color: #6c757d;">Vous êtes sur le point de supprimer <b>{{pointage.date}}</b>. Cet pointage est irréversible.</p>
       </div>
   </div>
   <ng-template pTemplate="footer">

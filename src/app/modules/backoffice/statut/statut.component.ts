@@ -47,7 +47,7 @@ export class StatutComponent implements OnInit {
   // Initialiser les colonnes pour le tableau
   private initColumns(): void {
     this.cols = [
-      { field: 'ilbelle', header: 'Libelle' },
+      { field: 'libelle', header: 'Libelle' },
       { field: 'description', header: 'Description' },
       { field: 'couleur', header: 'Couleur' },
     ];

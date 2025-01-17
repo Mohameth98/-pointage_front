@@ -15,6 +15,7 @@ import { CustomerService } from './demo/service/customer.service';
 import { CountryService } from './demo/service/country.service';
 import { PhotoService } from './demo/service/photo.service';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { DirecteurLayoutModule } from './layout/directeur-layout/directeur.layout.module';
 
 
 function initializeKeycloak(keycloak: KeycloakService) {
@@ -42,6 +43,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     AppLayoutModule,
     KeycloakAngularModule,
     BackofficeLayoutModule,
+    DirecteurLayoutModule,
     AppRoutingModule,
     RouterModule,
     ToastModule

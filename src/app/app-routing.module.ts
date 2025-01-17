@@ -4,6 +4,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { NotfoundComponent } from './demo/components/notfound/notfound.component';
 import { AppLayoutComponent } from './layout/app.layout.component';
 import { BackofficeLayoutComponent } from './layout/backoffice-layout/backoffice.layout.component';
+import { DirecteurLayoutComponent } from './layout/directeur-layout/directeur.layout.component';
 
 
 
@@ -20,6 +21,13 @@ const routes: Routes = [
     path: 'backoffice', component: BackofficeLayoutComponent, canActivate: [AuthGuard], data: { roles: ['ROLE_ADMIN'] },
 
     loadChildren: () => import('./modules/backoffice/backoffice.module').then(m => m.BackofficeModule),
+
+  },
+
+  {
+    path: 'directeur', component: DirecteurLayoutComponent, canActivate: [AuthGuard], data: { roles: ['ROLE_ADMIN'] },
+
+    loadChildren: () => import('./modules/directeur/directeur.module').then(m => m.DirecteurModule),
 
   },
 

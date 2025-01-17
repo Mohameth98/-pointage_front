@@ -8,11 +8,8 @@
               </div>
           </ng-template>
           <ng-template pTemplate="right">
-              <button pButton pRipple label="Export CSV" icon="pi pi-upload" class="p-button-help mr-3"
-                  (click)="dt.exportCSV()"></button>
-
-              <button pButton pRipple label="Export PDF" icon="pi pi-file-pdf" class="p-button-help"
-                  (click)="exportPDF()"></button>
+                <p-button label="Export CSV" [raised]="true" icon="pi pi-upload" class="p-button-help mr-3" (click)="dt.exportCSV()" severity="help"/>
+                <p-button label="Export PDF" [raised]="true" icon="pi pi-file-pdf" class="p-button-help mr-3" (click)="exportPDF()" severity="help"/>
           </ng-template>
       </p-toolbar>
       <div *ngIf="loading" class="loading-message">
@@ -37,8 +34,8 @@
           </ng-template>
           <ng-template pTemplate="header">
             <tr class="p-datatable-thead">
-              <th pSortableColumn="libelle" class="p-datatable-header p-bg-info">Libelle <p-sortIcon field="libelle"></p-sortIcon></th>
               <th pSortableColumn="couleur" class="p-datatable-header p-bg-info">Couleur <p-sortIcon field="couleur"></p-sortIcon></th>
+              <th pSortableColumn="libelle" class="p-datatable-header p-bg-info">Libelle <p-sortIcon field="libelle"></p-sortIcon></th>
               <th pSortableColumn="description" class="p-datatable-header p-bg-info">Description <p-sortIcon field="description"></p-sortIcon></th>
               <th pSortableColumn="action" class="p-datatable-header p-bg-info">Action <p-sortIcon field="action"></p-sortIcon></th>
             </tr>

@@ -1,13 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionService } from '../../proxy/auth/Session.service';
 import { MenuItem } from 'primeng/api';
+import { ChartModule } from 'primeng/chart';
+import { SharedComponentModule } from '../../layout/shared/shared-component.module';
 
 @Component({
-  selector: 'app-backoffice',
-  templateUrl: './backoffice.component.html',
-  styleUrl: './backoffice.component.css'
+  selector: 'app-directeur',
+  standalone: true,
+  imports:[ChartModule , SharedComponentModule],
+  templateUrl: './directeur.component.html',
+  styleUrls: ['./directeur.component.scss']
 })
-export class BackofficeComponent implements OnInit {
+export class DirecteurComponent implements OnInit{
+
   items!: MenuItem[];
 
   chartData: any;
@@ -15,7 +19,6 @@ export class BackofficeComponent implements OnInit {
   chartOptions: any;
 
 constructor(
-    private sessionService:SessionService
   ) {
 }
 
@@ -26,20 +29,9 @@ constructor(
           { label: 'Add New', icon: 'pi pi-fw pi-plus' },
           { label: 'Remove', icon: 'pi pi-fw pi-minus' }
       ];
-      // this.getStatistiques();
   }
 
-  // getStatistiques() {
-  //     //this.loadingColis = true;
-  //     setTimeout(() => {
-  //          //   this.loadingColis = false
-  //          this.budgetService.statistiqueDcg(sessionStorage.getItem("annee")).subscribe(result=>{
-  //             this.statistique=result;
-  //         })
-  //         },
-  //         1000);
 
-  // }
 
   initChart() {
       const documentStyle = getComputedStyle(document.documentElement);
@@ -102,5 +94,3 @@ constructor(
 
 
 }
-
-
