@@ -6,24 +6,35 @@
               <span>Matricule : <span class="text-lg">{{ employe?.matricule }}</span></span>
           </h4>
           <p-toolbar styleClass="mb-6">
-              <ng-template pTemplate="left">
-                  <div class="my-4 bg-white rounded-xl shadow-md p-6">
-                      <ul class="list-none p-0 m-0 w-full font-semibold text-gray-800">
-                          <li class="flex justify-between items-center mb-4 border-b border-gray-200 pb-4">
-                              <span class="text-sm text-gray-700">Prénom et Nom :</span>
-                              <span class="text-lg text-gray-900 font-bold">
-                                  {{ employe?.prenom }} {{ employe?.nom }}
-                              </span>
-                          </li>
-                          <li class="flex justify-between items-center mb-4">
-                              <span class="text-sm text-gray-700">Poste :</span>
-                              <span class="text-lg text-gray-900 font-bold">
-                                  {{ employe?.poste }}
-                              </span>
-                          </li>
-                      </ul>
+            <ng-template pTemplate="left">
+              <div class="my-4 bg-white rounded-xl shadow-md p-6">
+                  <!-- Icône utilisateur -->
+                  <div class="flex justify-center mb-4">
+                      <i class="fas fa-user text-3xl text-gray-700"></i> <!-- Icône utilisateur -->
                   </div>
-              </ng-template>
+                  <ul class="list-none p-0 m-0 w-full font-semibold text-gray-800">
+                        <li class="flex justify-between items-center mb-4">
+                          <span class="text-sm text-gray-700">Matricule  :  </span>
+                          <span class="text-lg text-gray-900 font-bold">
+                              {{ employe?.matricule }}
+                          </span>
+                      </li>
+                      <li class="flex justify-between items-center mb-4 border-b border-gray-200 pb-4">
+                          <span class="text-sm text-gray-700">Prénom et Nom :</span>
+                          <span class="text-lg text-gray-900 font-bold">
+                              {{ employe?.prenom }} {{ employe?.nom }}
+                          </span>
+                      </li>
+                      <li class="flex justify-between items-center mb-4">
+                          <span class="text-sm text-gray-700">Poste :</span>
+                          <span class="text-lg text-gray-900 font-bold">
+                              {{ employe?.poste }}
+                          </span>
+                      </li>
+                  </ul>
+              </div>
+          </ng-template>
+
           </p-toolbar>
           <p-toast></p-toast>
       </div>

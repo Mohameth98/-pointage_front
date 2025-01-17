@@ -57,11 +57,12 @@ export class PointageComponent implements OnInit {
   // Initialiser les colonnes pour le tableau
   private initColumns(): void {
     this.cols = [
-      { field: 'matricule', header: 'Matricule' },
-      { field: 'nom', header: 'Nom' },
-      { field: 'prenom', header: 'Prenom' },
-      { field: 'poste', header: 'Poste' },
-      { field: 'departement', header: 'Departement' },
+      { field: 'fullname', header: 'Employe' },
+      { field: 'date', header: 'Date' },
+      { field: 'heure_entree', header: 'Heure D\'entre' },
+      { field: 'statusLibelle', header: 'Etat' },
+      { field: 'heure_sortie', header: 'Heure de Sortie' },
+      { field: 'duree_travaillee', header: 'Duree de Travail' },
     ];
   }
 
@@ -303,7 +304,7 @@ getSeverity(couleur: string): "success" | "info" | "warning" | "danger" | "secon
         head: [columns],
         body: data,
       });
-      doc.save('produits.pdf');
+      doc.save('Pointage.pdf');
     }
   }
 

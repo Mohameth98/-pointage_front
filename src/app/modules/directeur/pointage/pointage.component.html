@@ -34,7 +34,7 @@
           </ng-template>
           <ng-template pTemplate="header">
             <tr class="p-datatable-thead">
-              <th pSortableColumn="employe" class="p-datatable-header p-bg-info">Employe <p-sortIcon field="employe"></p-sortIcon></th>
+              <th pSortableColumn="employe" class="p-datatable-header p-bg-info">Employe <p-sortIcon field="fullname"></p-sortIcon></th>
               <th pSortableColumn="date" class="p-datatable-header p-bg-info">Date <p-sortIcon field="date"></p-sortIcon></th>
               <th pSortableColumn="heure_entree" class="p-datatable-header p-bg-info">heure d'entree <p-sortIcon field="heure_entree"></p-sortIcon></th>
               <th pSortableColumn="statusLibelle" class="p-datatable-header p-bg-info">Etat <p-sortIcon field="statusLibelle"></p-sortIcon></th>
@@ -54,48 +54,47 @@
                   {{ pointage.date | date: 'dd/MM/yyyy' }}
               </td>
 
-                <td style="min-width:15rem;">
-                    {{ pointage.heure_entree }}
-                </td>
+              <td style="min-width:15rem;">
+                  {{ pointage.heure_entree }}
+              </td>
 
 
-                  <td style="min-width:15rem;">
-                    <p-tag [severity]="getSeverity(pointage.statusCouleur)" [value]="pointage.statusLibelle"></p-tag>
-                  </td>
+              <td style="min-width:15rem;">
+                <p-tag [severity]="getSeverity(pointage.statusCouleur)" [value]="pointage.statusLibelle"></p-tag>
+              </td>
 
-                  <td style=" min-width:10rem;"><span class="p-column-title">Code</span>
-                      {{pointage.heure_sortie || pointage.id}}
-                  </td>
+              <td style=" min-width:10rem;"><span class="p-column-title">Code</span>
+                  {{pointage.heure_sortie || pointage.id}}
+              </td>
 
-                  <td style=" min-width:15rem;">
-                    {{pointage.duree_travaillee}}
-                  </td>
+              <td style=" min-width:15rem;">
+                {{pointage.duree_travaillee}}
+              </td>
 
-                  <td>
-                      <div class="flex">
-                        <p-button
-                         icon="pi pi-pencil"
-                         [rounded]="true"
-                         [text]="true"
-                         [raised]="true"
-                         severity="info"
-                         styleClass="p-button-text p-button-icon-only mr-2"
-                         (click)="edit(pointage)">
-                        </p-button>
-
-
-                        <p-button
-                        icon="pi pi-trash"
+                <td>
+                    <div class="flex">
+                      <p-button
+                        icon="pi pi-pencil"
                         [rounded]="true"
                         [text]="true"
                         [raised]="true"
-                        severity="danger"
-                        styleClass="p-button-icon-only ml-2"
-                        (click)="deleteProduits(pointage)">
-                    </p-button>
+                        severity="info"
+                        styleClass="p-button-text p-button-icon-only mr-2"
+                        (click)="edit(pointage)">
+                      </p-button>
 
-                      </div>
-                  </td>
+                      <p-button
+                      icon="pi pi-trash"
+                      [rounded]="true"
+                      [text]="true"
+                      [raised]="true"
+                      severity="danger"
+                      styleClass="p-button-icon-only ml-2"
+                      (click)="deleteProduits(pointage)">
+                  </p-button>
+
+                    </div>
+                </td>
               </tr>
           </ng-template>
       </p-table>
