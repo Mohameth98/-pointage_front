@@ -19,7 +19,6 @@ export class DetailsEmployeComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.employeId = params['id'];  // Récupérer l'ID de l'URL
-      console.log('ID de l\'employé:', this.employeId);  // Log pour vérifier l'ID
 
       if (this.employeId) {
         this.getEmployeDetails(this.employeId);
@@ -34,7 +33,6 @@ export class DetailsEmployeComponent implements OnInit {
 
     this.employeService.getOneById(id).subscribe(
       (employe) => {
-        console.log('Employé récupéré:', employe);  // Log des données récupérées
         this.employe = employe;
       },
       (error) => {
