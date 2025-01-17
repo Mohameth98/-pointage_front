@@ -68,7 +68,21 @@
                     {{employe.departement}}
                   </td>
                   <td>
+
+
                       <div class="flex">
+
+                        <a pButton
+                        label=""
+                        icon="pi pi-info-circle"
+                        [text]="true"
+                        [rounded]="true"
+                        [raised]="true"
+                        [routerLink]="['/backoffice/details-employe', employe.id]"
+                        class="p-element p-button-text p-button p-component p-button-icon-only mr-3">
+                     </a>
+
+
                         <p-button
                          icon="pi pi-pencil"
                          [rounded]="true"
@@ -153,19 +167,22 @@
           <p style="color: #6c757d;">Vous êtes sur le point de supprimer <b>{{employe.matricule}}</b>. Cet employe est irréversible.</p>
       </div>
   </div>
-      <ng-template pTemplate="footer">
-          <div class="flex justify-content-end mt-3">
-              <button pButton pRipple icon="pi pi-times"
-                      class="p-button-rounded p-button-text"
-                      label="Annuler"
-                      style="border: 1px solid #ddd; color: #495057;"
-                      (click)="deleteproduitsDialog = false"></button>
-              <button pButton pRipple icon="pi pi-check"
-                      class="p-button-rounded p-button-danger"
-                      label="Supprimer"
-                      (click)="confirmDelete()"></button>
-          </div>
-      </ng-template>
+  <ng-template pTemplate="footer">
+    <div class="flex justify-content-end mt-3">
+      <button pButton pRipple icon="pi pi-times"
+              class="p-button-rounded p-button-text p-button-secondary"
+              label="Annuler"
+              style="border: 1px solid #ddd; color: #495057; margin-right: 10px;"
+              (click)="deleteproduitsDialog = false"></button>
+
+      <button pButton pRipple icon="pi pi-check"
+              class="p-button-rounded p-button-danger p-button-raised p-button-sm"
+              label="Supprimer"
+              style="background-color: #d9534f; color: white; border: none;"
+              (click)="confirmDelete()"></button>
+    </div>
+  </ng-template>
+
   </p-dialog>
 
 

@@ -1,0 +1,45 @@
+<div class="p-grid p-align-center p-justify-center">
+  <!-- Card Container -->
+  <div class="p-col-12 p-md-8 p-lg-6">
+    <p-card [style]="{ width: '100%', boxShadow: '0 10px 15px rgba(0, 0, 0, 0.1)' }" class="p-card-rounded">
+      <!-- Header with User Image -->
+      <ng-template #header>
+        <div class="p-d-flex p-jc-center">
+          <!-- Photo de profil avec un style arrondi -->
+          <img src="assets/layout/images/user-avatar.png" alt="User Image"
+            style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover;" />
+        </div>
+      </ng-template>
+
+      <!-- Title and Subtitle -->
+      <ng-template #title>
+        <h3 style="color: #1e3a8a; font-weight: 600; text-align: center;">{{ employe.prenom }} {{ employe.nom }}</h3>
+      </ng-template>
+      <ng-template #subtitle>
+        <h4 style="color: #6b7280; font-weight: 400; text-align: center;">{{ employe.role }}</h4>
+      </ng-template>
+
+      <!-- User Description -->
+      <p style="color: #374151; font-size: 1rem; margin: 1rem 0; text-align: center;">
+        Développeur passionné, spécialisé dans la création d'applications web et mobile avec des technologies modernes telles que Java, Angular et Spring Boot. J'aime résoudre des problèmes complexes et optimiser les systèmes pour offrir des solutions performantes et user-friendly. Toujours en quête de nouveaux défis, je mets un point d'honneur à écrire un code propre et efficace tout en collaborant de manière dynamique avec mes équipes.      </p>
+
+      <!-- User Details -->
+      <div class="p-grid p-align-center">
+        <div class="p-col-12 p-md-6">
+          <p><strong style="color: #1e3a8a;">Email: </strong>{{ employe.email }}</p>
+        </div>
+        <div class="p-col-12 p-md-6">
+          <p><strong style="color: #1e3a8a;">Phone: </strong>{{ employe.phone }}</p>
+        </div>
+      </div>
+
+      <!-- Footer with Buttons -->
+      <ng-template #footer>
+        <div class="flex gap-4 mt-1 justify-content-center">
+          <p-button label="Edit" icon="pi pi-pencil" severity="warning" styleClass="p-button-rounded p-button-outlined p-button-warning" (click)="editUser()"></p-button>
+          <p-button label="Back" icon="pi pi-arrow-left" severity="secondary" styleClass="p-button-rounded p-button-outlined p-button-secondary" [routerLink]="['/users']"></p-button>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+</div>
