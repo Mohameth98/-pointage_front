@@ -18,7 +18,7 @@
 
       <p-table #dt [value]="pointages" [columns]="cols" responsiveLayout="scroll" [rows]="10"
           styleClass="p-datatable-gridlines"
-          [globalFilterFields]="['code','libelle']" [paginator]="true"
+          [globalFilterFields]="['fullname','heure_entree','employeMatricule','date','statusLibelle']" [paginator]="true"
           [rowsPerPageOptions]="[4,10,20,30]" [showCurrentPageReport]="true"
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" selectionMode="multiple"
           [rowHover]="true" dataKey="id">
@@ -34,7 +34,7 @@
           </ng-template>
           <ng-template pTemplate="header">
             <tr class="p-datatable-thead">
-              <th pSortableColumn="employe" class="p-datatable-header p-bg-info">Employe <p-sortIcon field="fullname"></p-sortIcon></th>
+              <th pSortableColumn="fullname" class="p-datatable-header p-bg-info">Employe <p-sortIcon field="fullname"></p-sortIcon></th>
               <th pSortableColumn="date" class="p-datatable-header p-bg-info">Date <p-sortIcon field="date"></p-sortIcon></th>
               <th pSortableColumn="heure_entree" class="p-datatable-header p-bg-info">heure d'entree <p-sortIcon field="heure_entree"></p-sortIcon></th>
               <th pSortableColumn="statusLibelle" class="p-datatable-header p-bg-info">Etat <p-sortIcon field="statusLibelle"></p-sortIcon></th>
@@ -100,65 +100,95 @@
       </p-table>
   </div>
 
-  <p-dialog [(visible)]="pointagesDialog" [style]="{width: '450px'}" header="Saisie les Details des Employes" [modal]="true"
-      class="p-fluid">
-      <ng-template pTemplate="content">
-          <form [formGroup]="form" (ngSubmit)="saveProduits()">
-            <div class="field">
-              <label for="employe">Employé</label>
-              <p-dropdown
-                id="employe"
-                formControlName="fullname"
-                [options]="employes"
-                optionLabel="fullname"
-                placeholder="Sélectionnez un employé"
-                [autoDisplayFirst]="false"
-                [filter]="true"
-                filterPlaceholder="Rechercher un employé"
-                [showClear]="true">
-              </p-dropdown>
-            </div>
+<p-dialog [(visible)]="pointagesDialog"
+  [style]="{width: '700px', height: '600px'}"
+  header="POINTAGE DE L'EMPLOYE"
+  [modal]="true"
+  class="p-fluid">
+<ng-template pTemplate="content">
+<form [formGroup]="form" (ngSubmit)="saveProduits()">
+<div class="field">
+<label for="employe">Employé</label>
+<p-dropdown
+  id="employe"
+  formControlName="employesMatricule"
+  [options]="employes"
+  optionLabel="matricule"
+  placeholder="Sélectionnez un employé"
+  [autoDisplayFirst]="false"
+  [filter]="true"
+  filterPlaceholder="Rechercher un employé"
+  [showClear]="true">
+</p-dropdown>
+</div>
 
-              <div class="field">
-                  <label for="name">date</label>
-                  <input type="text" pInputText id="name" formControlName="date" autofocus />
-              </div>
-              <div class="field">
-                  <label for="name">Heure d'entree</label>
-                  <input type="text" pInputText id="name" formControlName="heure_entree" autofocus />
-              </div>
+<div class="field">
+<label for="date">Date </label>
+<p-calendar
+  id="date"
+  formControlName="date"
+  [showIcon]="true"
+  dateFormat="dd/mm/yy">
+</p-calendar>
+</div>
 
-              <div class="field">
-                <label for="name">Etat</label>
-                <input type="text" pInputText id="statutId" formControlName="statutId" autofocus />
-            </div>
+<div class="field">
+<label for="time">Heure D'entrée (avec secondes)</label>
+<p-calendar
+  id="time"
+  formControlName="heure_entree"
+  [timeOnly]="true"
+  [showSeconds]="true"
+  [hourFormat]="'24'"
+  [showIcon]="true">
+</p-calendar>
+</div>
 
-              <div class="field">
-                <label for="name">Heure De Sortie</label>
-                <input type="text" pInputText id="name" formControlName="heure_sortie" autofocus />
-              </div>
+<div class="field">
+<label for="time">Heure De Sortie (avec secondes)</label>
+<p-calendar
+  id="time"
+  formControlName="heure_sortie"
+  [timeOnly]="true"
+  [showSeconds]="true"
+  [hourFormat]="'24'"
+  [showIcon]="true">
+</p-calendar>
+</div>
 
-              <div class="field">
-                <label for="name">Duree de Travaillee</label>
-                <input type="text" pInputText id="name" formControlName="duree_travaillee" autofocus />
-              </div>
+<div class="field">
+<label for="time">Durée de Travail (avec secondes)</label>
+<p-calendar
+  id="time"
+  formControlName="duree_travaillee"
+  [timeOnly]="true"
+  [showSeconds]="true"
+  [hourFormat]="'24'"
+  [showIcon]="true">
+</p-calendar>
+</div>
+</form>
+</ng-template>
 
+<ng-template pTemplate="footer">
+<button pButton pRipple
+    label="Annuler"
+    icon="pi pi-times"
+    class="p-button-rounded p-button-danger p-button-outlined"
+    style="font-weight: bold; border-radius: 20px; padding: 10px 20px;"
+    (click)="hideDialog()">
+</button>
+<button pButton pRipple
+    label="Sauvegarder"
+    icon="pi pi-check"
+    class="p-button-rounded p-button-success"
+    style="font-weight: bold; border-radius: 20px; padding: 10px 20px;"
+    (click)="saveProduits()"
+    [disabled]="form.invalid">
+</button>
+</ng-template>
+</p-dialog>
 
-
-
-          </form>
-      </ng-template>
-      <ng-template pTemplate="footer">
-          <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-outlined"
-          style="font-weight: bold; border-radius: 20px; padding: 10px 20px;" (click)="hideDialog()">
-         </button>
-
-          <button pButton pRipple label="Sauvegarder" icon="pi pi-check" class="p-button-rounded p-button-success"
-              style="font-weight: bold; border-radius: 20px; padding: 10px 20px;" (click)="saveProduits()"
-              [disabled]="form.invalid">
-          </button>
-      </ng-template>
-  </p-dialog>
 
   <p-dialog [(visible)]="deleteproduitsDialog"
   header="Suppression de l'employe"

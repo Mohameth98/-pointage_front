@@ -6,7 +6,6 @@ import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
-// import { EmployeDto } from '../../../proxy/employe';
 import { PointageDto, PointageService } from '../../../proxy/pointage';
 import { StatutDto, StatutService } from '../../../proxy/statuts';
 
@@ -116,7 +115,7 @@ loadEmploye(): void {
       // Mettre à jour la liste des employés en ajoutant le fullname
       this.employes = result.map((employe) => ({
         ...employe,
-        fullname: `${employe.prenom} ${employe.nom}`
+        matricule: `${employe.matricule}`
       }));
       this.loading = false;
     },
@@ -174,6 +173,7 @@ getSeverity(couleur: string): "success" | "info" | "warning" | "danger" | "secon
   // Construire le formulaire
   private buildForm(): void {
     this.form = this.fb.group({
+      employesMatricule: [this.pointage.employesMatricule],
       fullname: [`${this.pointage.employesPrenom} ${this.pointage.employesNom}`|| '', Validators.required],
       date: [this.pointage.date || '', Validators.required],
       heure_entree: [this.pointage.heure_entree || '', Validators.required],
@@ -255,7 +255,7 @@ getSeverity(couleur: string): "success" | "info" | "warning" | "danger" | "secon
                 this.messageService.add({
                     severity: 'error',
                     summary: 'Erreur',
-                    detail: 'Erreur lors de la modification du Employé.',
+                    detail: 'Erreur lors de la modification du Pointage.',
                     life: 3000,
                 });
                 console.error('Erreur de mise à jour :', error);
@@ -271,7 +271,7 @@ getSeverity(couleur: string): "success" | "info" | "warning" | "danger" | "secon
                 this.messageService.add({
                     severity: 'success',
                     summary: 'Succès',
-                    detail: 'Employé ajouté avec succès.',
+                    detail: 'Employé Pointé avec succès.',
                     life: 3000,
                 });
                 this.pointage = {}; // Réinitialiser l'objet produit
@@ -280,7 +280,7 @@ getSeverity(couleur: string): "success" | "info" | "warning" | "danger" | "secon
                 this.messageService.add({
                     severity: 'error',
                     summary: 'Erreur',
-                    detail: 'Erreur lors de l\'ajout du Employé.',
+                    detail: 'Erreur lors de l\'ajout du Pointage.',
                     life: 3000,
                 });
                 console.error('Erreur d\'ajout :', error);
@@ -308,8 +308,8 @@ getSeverity(couleur: string): "success" | "info" | "warning" | "danger" | "secon
     }
   }
 
-  // Éditer un produit existant
-  edit(pointage: EmployeDto): void {
+  // Éditer un pointage existant
+  edit(pointage: PointageDto): void {
     if (pointage.id !== undefined) {
       this.pointageService.getOneById(pointage.id).subscribe(
         (pointageDetails: PointageDto) => {

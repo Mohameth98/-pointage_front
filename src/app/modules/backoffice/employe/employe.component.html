@@ -18,7 +18,7 @@
 
       <p-table #dt [value]="employes" [columns]="cols" responsiveLayout="scroll" [rows]="10"
           styleClass="p-datatable-gridlines"
-          [globalFilterFields]="['code','libelle']" [paginator]="true"
+          [globalFilterFields]="['matricule','nom' , 'prenom','poste','departement']" [paginator]="true"
           [rowsPerPageOptions]="[4,10,20,30]" [showCurrentPageReport]="true"
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" selectionMode="multiple"
           [rowHover]="true" dataKey="id">

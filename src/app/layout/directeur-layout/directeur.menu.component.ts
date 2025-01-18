@@ -30,10 +30,16 @@ export class DirecteurMenuComponent implements OnInit {
                         routerLink: ['/directeur/pointage']
                     },
                     {
-                        label: 'Les Retards',
+                        label: 'Gestion des Absents',
                         icon: 'pi pi-fw pi-users',
-                        routerLink: ['/directeur/retards']
+                        routerLink: ['/directeur/absent']
                     },
+
+                    {
+                      label: 'Gestion des Demandes',
+                      icon: 'pi pi-fw pi pi-file',
+                      routerLink: ['/directeur/demande-permission']
+                  },
 
                 ],
 

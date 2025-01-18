@@ -11,6 +11,7 @@ export interface PointageDto {
     statusLibelle?:string;
     employesPrenom?:string;
     employesNom?:string;
+    employesMatricule?:String;
 }
 
 
