@@ -14,7 +14,7 @@
     </p-toolbar>
       <div *ngIf="loading" class="loading-message">
           <p>Chargement, veuillez patienter le chargement des Pointages...</p>
-          </div>
+      </div>
 
       <p-table #dt [value]="pointages" [columns]="cols" responsiveLayout="scroll" [rows]="10"
           styleClass="p-datatable-gridlines"
@@ -50,7 +50,7 @@
                   {{ pointage.employesPrenom }} {{ pointage.employesNom }}
               </td>
 
-                <td style="min-width:15rem;">
+              <td style="min-width:15rem;">
                   {{ pointage.date | date: 'dd/MM/yyyy' }}
               </td>
 
@@ -84,14 +84,14 @@
                       </p-button>
 
                       <p-button
-                      icon="pi pi-trash"
-                      [rounded]="true"
-                      [text]="true"
-                      [raised]="true"
-                      severity="danger"
-                      styleClass="p-button-icon-only ml-2"
-                      (click)="deleteProduits(pointage)">
-                  </p-button>
+                          icon="pi pi-trash"
+                          [rounded]="true"
+                          [text]="true"
+                          [raised]="true"
+                          severity="danger"
+                          styleClass="p-button-icon-only ml-2"
+                          (click)="deleteProduits(pointage)">
+                     </p-button>
 
                     </div>
                 </td>
@@ -147,12 +147,12 @@
 <div class="field">
 <label for="time">Heure De Sortie (avec secondes)</label>
 <p-calendar
-  id="time"
-  formControlName="heure_sortie"
-  [timeOnly]="true"
-  [showSeconds]="true"
-  [hourFormat]="'24'"
-  [showIcon]="true">
+    id="time"
+    formControlName="heure_sortie"
+    [timeOnly]="true"
+    [showSeconds]="true"
+    [hourFormat]="'24'"
+    [showIcon]="true">
 </p-calendar>
 </div>
 

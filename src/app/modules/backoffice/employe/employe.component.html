@@ -1,7 +1,7 @@
 <div class="col-12">
   <div class="card px-6 py-6" style="background-color: rgb(235, 242, 246);">
-      <p-toast></p-toast>
-      <p-toolbar styleClass="mb-4">
+  <p-toast></p-toast>
+  <p-toolbar styleClass="mb-4">
         <ng-template pTemplate="left">
             <div class="my-2">
               <p-button label="Ajouter un Employés" [raised]="true" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()" severity="success"/>
@@ -14,7 +14,7 @@
     </p-toolbar>
       <div *ngIf="loading" class="loading-message">
           <p>Chargement, veuillez patienter le chargement des Employés...</p>
-          </div>
+      </div>
 
       <p-table #dt [value]="employes" [columns]="cols" responsiveLayout="scroll" [rows]="10"
           styleClass="p-datatable-gridlines"
@@ -65,8 +65,6 @@
                     {{employe.departement}}
                   </td>
                   <td>
-
-
                       <div class="flex">
 
                         <a pButton
@@ -80,18 +78,17 @@
                      </a>
 
 
-                        <p-button
-                         icon="pi pi-pencil"
-                         [rounded]="true"
-                         [text]="true"
-                         [raised]="true"
-                         severity="info"
-                         styleClass="p-button-text p-button-icon-only mr-2"
-                         (click)="edit(employe)">
-                        </p-button>
+                    <p-button
+                      icon="pi pi-pencil"
+                      [rounded]="true"
+                      [text]="true"
+                      [raised]="true"
+                      severity="info"
+                      styleClass="p-button-text p-button-icon-only mr-2"
+                      (click)="edit(employe)">
+                    </p-button>
 
-
-                        <p-button
+                    <p-button
                         icon="pi pi-trash"
                         [rounded]="true"
                         [text]="true"
@@ -123,20 +120,18 @@
 
               <div class="field">
                 <label for="name">Prenom</label>
-                <input type="text" pInputText id="name" formControlName="prenom" autofocus />
+                <input type="text" pInputText id="name" formControlName="prenom" autofocus/>
               </div>
 
               <div class="field">
                 <label for="name">Poste</label>
-                <input type="text" pInputText id="name" formControlName="poste" autofocus />
+                <input type="text" pInputText id="name" formControlName="poste" autofocus/>
               </div>
 
               <div class="field">
                 <label for="name">Departement</label>
-                <input type="text" pInputText id="name" formControlName="departement" autofocus />
+                <input type="text" pInputText id="name" formControlName="departement" autofocus/>
               </div>
-
-
           </form>
       </ng-template>
       <ng-template pTemplate="footer">
@@ -151,37 +146,35 @@
       </ng-template>
   </p-dialog>
 
-  <p-dialog [(visible)]="deleteproduitsDialog"
-  header="Suppression de l'employe"
-  [modal]="true"
-  [closable]="false"
-  [style]="{width:'30vw'}"
-  [styleClass]="'p-dialog-custom p-shadow-5'">
-  <div class="flex align-items-center justify-content-center" style="text-align: center; padding: 1rem;">
-      <i class="pi pi-exclamation-circle" style="font-size: 1.5rem; color: #FF5252;"></i>
-      <div style="margin-left: 1rem;">
-          <h2 style="color: #495057; font-weight: 600;">Êtes-vous sûr ?</h2>
-          <p style="color: #6c757d;">Vous êtes sur le point de supprimer <b>{{employe.matricule}}</b>. Cet employe est irréversible.</p>
-      </div>
-  </div>
-  <ng-template pTemplate="footer">
-    <div class="flex justify-content-end mt-3">
-      <button pButton pRipple icon="pi pi-times"
-              class="p-button-rounded p-button-text p-button-secondary"
-              label="Annuler"
-              style="border: 1px solid #ddd; color: #495057; margin-right: 10px;"
-              (click)="deleteproduitsDialog = false"></button>
+<p-dialog [(visible)]="deleteproduitsDialog"
+        header="Suppression de l'employe"
+        [modal]="true"
+        [closable]="false"
+        [style]="{width:'30vw'}"
+        [styleClass]="'p-dialog-custom p-shadow-5'">
+        <div class="flex align-items-center justify-content-center" style="text-align: center; padding: 1rem;">
+            <i class="pi pi-exclamation-circle" style="font-size: 1.5rem; color: #FF5252;"></i>
+            <div style="margin-left: 1rem;">
+                <h2 style="color: #495057; font-weight: 600;">Êtes-vous sûr ?</h2>
+                <p style="color: #6c757d;">Vous êtes sur le point de supprimer <b>{{employe.matricule}}</b>. Cet employe est irréversible.</p>
+            </div>
+        </div>
+        <ng-template pTemplate="footer">
+          <div class="flex justify-content-end mt-3">
+            <button pButton pRipple icon="pi pi-times"
+                    class="p-button-rounded p-button-text p-button-secondary"
+                    label="Annuler"
+                    style="border: 1px solid #ddd; color: #495057; margin-right: 10px;"
+                    (click)="deleteproduitsDialog = false"></button>
 
-      <button pButton pRipple icon="pi pi-check"
-              class="p-button-rounded p-button-danger p-button-raised p-button-sm"
-              label="Supprimer"
-              style="background-color: #d9534f; color: white; border: none;"
-              (click)="confirmDelete()"></button>
-    </div>
-  </ng-template>
-
-  </p-dialog>
-
+            <button pButton pRipple icon="pi pi-check"
+                    class="p-button-rounded p-button-danger p-button-raised p-button-sm"
+                    label="Supprimer"
+                    style="background-color: #d9534f; color: white; border: none;"
+                    (click)="confirmDelete()"></button>
+          </div>
+        </ng-template>
+</p-dialog>
 
 </div>
 
