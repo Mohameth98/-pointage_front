@@ -6,6 +6,8 @@ import { Table } from 'primeng/table';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { EmployeDto } from '../../../proxy/employe';
+
+
 @Component({
   selector: 'app-employe',
   templateUrl: './employe.component.html',
@@ -47,28 +49,27 @@ export class EmployeComponent implements OnInit {
     ];
   }
 
-// Supprimer  produits
+// Supprimer  employes
   deleteProduits(employe: EmployeDto) {
     this.deleteproduitsDialog = true;
     this.employe = { ...employe };
 }
 
 // Confirme la suppresion
-
 confirmDelete(): void {
   if (this.employe.id !== undefined) {
     this.deleteproduitsDialog = false;
 
     this.employeService.delete(this.employe.id).subscribe(
       () => {
-        this.getAllEmployes(); // Rafraîchir la liste des produits
+        this.getAllEmployes(); // Rafraîchir la liste des employés
         this.messageService.add({
           severity: 'success',
           summary: 'Succès',
           detail: 'Employe supprimé avec succès.',
           life: 3000,
         });
-        this.employe = {}; // Réinitialiser l'objet produit
+        this.employe = {}; // Réinitialiser l'objet employé
       },
       (error) => {
         this.messageService.add({
@@ -84,7 +85,7 @@ confirmDelete(): void {
     this.messageService.add({
       severity: 'warn',
       summary: 'Avertissement',
-      detail: 'Aucun employe sélectionné pour suppression.',
+      detail: 'Aucun employé sélectionné pour suppression.',
       life: 3000,
     });
   }
@@ -119,7 +120,7 @@ confirmDelete(): void {
     this.produitsDialog = false;
   }
 
-  //Permet d'ajouter un employe
+  //Permet d'ajouter un employé
   saveProduits(): void {
         if (this.form.invalid) {
             this.messageService.add({
@@ -144,8 +145,8 @@ confirmDelete(): void {
                     detail: 'Employe modifié avec succès.',
                     life: 3000,
                 });
-                this.employe = {}; // Réinitialiser l'objet produit
-                this.getAllEmployes(); // Rafraîchir la liste des produits
+                this.employe = {}; // Réinitialiser l'objet employé
+                this.getAllEmployes(); // Rafraîchir la liste des employés
             },
             (error) => {
                 this.messageService.add({
@@ -159,18 +160,18 @@ confirmDelete(): void {
             }
         );
     } else {
-        // Sinon, créer un nouveau produit
+        // Sinon, créer un nouveau employe
         this.employeService.save(employeData).subscribe(
             () => {
                 this.produitsDialog = false;
-                this.getAllEmployes(); // Rafraîchir la liste des produits
+                this.getAllEmployes(); // Rafraîchir la liste des employés
                 this.messageService.add({
                     severity: 'success',
                     summary: 'Succès',
                     detail: 'Employé ajouté avec succès.',
                     life: 3000,
                 });
-                this.employe = {}; // Réinitialiser l'objet produit
+                this.employe = {}; // Réinitialiser l'objet employé
             },
             (error) => {
                 this.messageService.add({
@@ -200,11 +201,11 @@ confirmDelete(): void {
         head: [columns],
         body: data,
       });
-      doc.save('produits.pdf');
+      doc.save('employes.pdf');
     }
   }
 
-  // Éditer un produit existant
+  // Éditer un employes existant
   edit(employe: EmployeDto): void {
     if (employe.id !== undefined) {
       this.employeService.getOneById(employe.id).subscribe(
@@ -232,7 +233,7 @@ confirmDelete(): void {
     }
   }
 
-  // Charger tous les employe
+  // Charger tous les employés
   private getAllEmployes(): void {
     this.loading = true;
     this.employeService.findAll().subscribe(

@@ -13,7 +13,6 @@ import { KeycloakProfile, KeycloakTokenParsed } from 'keycloak-js';
 export class AppTopBarComponent implements OnInit {
   public isLoggedIn = false;
   public userProfile: KeycloakProfile | null = null;
-  public realm_access: KeycloakTokenParsed | null = null;
   fullname = "";
   loading: Boolean = false;
   years: { label: string; value: number }[] = [];
@@ -54,7 +53,6 @@ export class AppTopBarComponent implements OnInit {
     if (this.isLoggedIn) {
       this.userProfile = await this.keycloak.loadUserProfile();
       this.fullname = this.userProfile.firstName + " " + this.userProfile.lastName;
-      this.realm_access = this.KeycloakTokenParsed.realm_access;
 
     }
   }

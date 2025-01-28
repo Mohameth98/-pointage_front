@@ -24,14 +24,24 @@ export class HomeComponent implements OnInit{
       return userRoles.includes('ROLE_ADMIN');
     }
 
+    public isDirecteur(): boolean {
+      const userRoles = this.keycloakService.getUserRoles();
+      return userRoles.includes('ROLE_DIRECTEUR');
+    }
+
 
     async redirectBasedOnRole(): Promise<void>{
       const userRoles = this.keycloakService.getUserRoles();
 
       const isAdmin = userRoles.includes('ROLE_ADMIN');
+      const isDirecteur = userRoles.includes('ROLE_DIRECTEUR');
 
       if (isAdmin) {
           this.router.navigate(['/']);
+      }else if (isDirecteur){
+
+        this.router.navigate(['/directeur']);
+
       }
       else {
           this.router.navigate(['/']);

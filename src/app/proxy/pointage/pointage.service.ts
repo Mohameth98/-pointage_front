@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import type { PointageDto } from './models';
 import { environment } from '../../../environments/environment';
-// import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -21,8 +20,7 @@ export class PointageService {
 
   constructor(private readonly httpClient: HttpClient) { }
 
-
-  // Récupérer toutes les produits
+  // Récupérer toutes les pointages
   findAll() {
     return this.httpClient.get<PointageDto[]>(this.api_host, this.httpOptions);
   }
@@ -34,12 +32,12 @@ findAllByAnnee(annee: string) {
 
 
 
-  // Sauvegarder un nouveau produit
+  // Sauvegarder un nouveau pointage
   save(item: PointageDto) {
     return this.httpClient.post(this.api_host, item, this.httpOptions);
   }
 
-  // Supprimer un produit par ID
+  // Supprimer un pointage par ID
   delete(id: number) {
     const new_api_host = this.routerParam(this.api_host, id.toString());
     return this.httpClient.delete(new_api_host, this.httpOptions);
@@ -51,13 +49,13 @@ findAllByAnnee(annee: string) {
     return this.httpClient.put<PointageDto>(new_api_host, item, this.httpOptions);
   }
 
-  // Récupérer un produit par ID
+  // Récupérer un pointage par ID
   getOneById(id: number) {
       const new_api_host = this.routerParam(this.api_host, id.toString());
       return this.httpClient.get<PointageDto>(new_api_host, this.httpOptions);
     }
 
-  // Méthode spécifique pour mettre à jour le statut d'un produits
+  // Méthode spécifique pour mettre à jour le statut d'un pointage
   updateStatus(id: number, status: string) {
     const new_api_host = this.routerParam(this.api_host, id.toString()) + '/status';
     return this.httpClient.put<{ status: string }>(

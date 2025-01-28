@@ -263,7 +263,7 @@ getSeverity(couleur: string): "success" | "info" | "warning" | "danger" | "secon
             }
         );
     } else {
-        // Sinon, créer un nouveau produit
+        // Sinon, créer un nouveau pointage
         this.pointageService.save(pointageData).subscribe(
             () => {
                 this.pointagesDialog = false;
@@ -321,7 +321,7 @@ getSeverity(couleur: string): "success" | "info" | "warning" | "danger" | "secon
           this.messageService.add({
             severity: 'error',
             summary: 'Erreur',
-            detail: 'Impossible de charger les détails du Employé.',
+            detail: 'Impossible de charger les détails du Pointage.',
             life: 3000,
           });
         }
@@ -348,7 +348,7 @@ getSeverity(couleur: string): "success" | "info" | "warning" | "danger" | "secon
         this.messageService.add({
           severity: 'error',
           summary: 'Erreur',
-          detail: 'Erreur lors du chargement des Employés.',
+          detail: 'Erreur lors du chargement des Pointages.',
           life: 3000,
         });
         this.loading = false;

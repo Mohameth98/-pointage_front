@@ -25,7 +25,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'directeur', component: DirecteurLayoutComponent, canActivate: [AuthGuard], data: { roles: ['ROLE_ADMIN'] },
+    path: 'directeur', component: DirecteurLayoutComponent, canActivate: [AuthGuard], data: { roles: ['ROLE_DIRECTEUR'] },
 
     loadChildren: () => import('./modules/directeur/directeur.module').then(m => m.DirecteurModule),
 

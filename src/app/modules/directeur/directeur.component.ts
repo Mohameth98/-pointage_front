@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { ChartModule } from 'primeng/chart';
-import { SharedComponentModule } from '../../layout/shared/shared-component.module';
+import { SessionService } from '../../proxy/auth/Session.service';
 
 @Component({
   selector: 'app-directeur',
-  standalone: true,
-  imports:[ChartModule , SharedComponentModule],
   templateUrl: './directeur.component.html',
-  styleUrls: ['./directeur.component.scss']
+  styleUrls: ['./directeur.component.scss'],
 })
 export class DirecteurComponent implements OnInit{
 
@@ -19,6 +16,7 @@ export class DirecteurComponent implements OnInit{
   chartOptions: any;
 
 constructor(
+    private sessionService:SessionService
   ) {
 }
 

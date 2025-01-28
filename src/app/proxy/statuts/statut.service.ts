@@ -22,7 +22,7 @@ export class StatutService {
   constructor(private readonly httpClient: HttpClient) { }
 
 
-  // Récupérer toutes les produits
+  // Récupérer toutes les status
   findAll() {
     return this.httpClient.get<StatutDto[]>(this.api_host, this.httpOptions);
   }
@@ -34,38 +34,29 @@ findAllByAnnee(annee: string) {
 
 
 
-  // Sauvegarder un nouveau produit
+  // Sauvegarder un nouveau status
   save(item: StatutDto) {
     return this.httpClient.post(this.api_host, item, this.httpOptions);
   }
 
-  // Supprimer un produit par ID
+  // Supprimer un status par ID
   delete(id: number) {
     const new_api_host = this.routerParam(this.api_host, id.toString());
     return this.httpClient.delete(new_api_host, this.httpOptions);
   }
 
-  // Mettre à jour un produits  par ID
+  // Mettre à jour un status  par ID
   update(id: number, item: StatutDto) {
     const new_api_host = this.routerParam(this.api_host, id.toString());
     return this.httpClient.put<StatutDto>(new_api_host, item, this.httpOptions);
   }
 
-  // Récupérer un produit par ID
+  // Récupérer un status par ID
   getOneById(id: number) {
       const new_api_host = this.routerParam(this.api_host, id.toString());
       return this.httpClient.get<StatutDto>(new_api_host, this.httpOptions);
     }
 
-  // Méthode spécifique pour mettre à jour le statut d'un produits
-  updateStatus(id: number, status: string) {
-    const new_api_host = this.routerParam(this.api_host, id.toString()) + '/status';
-    return this.httpClient.put<{ status: string }>(
-      new_api_host,
-      { status },
-      this.httpOptions
-    );
-  }
 
   // Utilitaire pour ajouter des paramètres à l'URL
   routerParam(host: string, param: string) {

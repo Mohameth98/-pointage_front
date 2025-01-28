@@ -22,17 +22,17 @@ export class EmployeService{
   constructor(private readonly httpClient: HttpClient) { }
 
 
-  // Récupérer toutes les actions
+  // Récupérer toutes les employe
   findAll() {
     return this.httpClient.get<EmployeDto[]>(this.api_host, this.httpOptions);
   }
 
-  // Sauvegarder une nouvelle actions
+  // Sauvegarder une nouvelle employe
   save(item: EmployeDto) {
     return this.httpClient.post(this.api_host, item, this.httpOptions);
   }
 
-  // Supprimer une actions par ID
+  // Supprimer une employe par ID
   delete(id: number) {
     const new_api_host = this.routerParam(this.api_host, id.toString());
     return this.httpClient.delete(new_api_host, this.httpOptions);
@@ -43,7 +43,7 @@ export class EmployeService{
     return this.httpClient.put<EmployeDto>(new_api_host, item, this.httpOptions);
   }
 
-// Récupérer une action pp ID
+// Récupérer une employe pp ID
 getOneById(id: number) {
     const new_api_host = this.routerParam(this.api_host, id.toString());
     return this.httpClient.get<EmployeDto>(new_api_host, this.httpOptions);
