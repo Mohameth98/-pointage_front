@@ -13,12 +13,12 @@
           </ng-template>
       </p-toolbar>
       <div *ngIf="loading" class="loading-message">
-          <p>Chargement, veuillez patienter le chargement des Employés...</p>
+          <p>Chargement, veuillez patienter le chargement des Statuts...</p>
           </div>
 
       <p-table #dt [value]="statuts" [columns]="cols" responsiveLayout="scroll" [rows]="10"
           styleClass="p-datatable-gridlines"
-          [globalFilterFields]="['code','libelle']" [paginator]="true"
+          [globalFilterFields]="['couleur','libelle']" [paginator]="true"
           [rowsPerPageOptions]="[4,10,20,30]" [showCurrentPageReport]="true"
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" selectionMode="multiple"
           [rowHover]="true" dataKey="id">

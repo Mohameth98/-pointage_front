@@ -45,12 +45,6 @@ export class PointageComponent implements OnInit {
     this.loadStatutsOptions(); // Appeler la méthode pour charger les données
     this.loadEmploye();
 
-
-
-    // Écouter les changements sur le champ heure_entree
-    this.pointageForm.get('heure_entree')?.valueChanges.subscribe((value) => {
-      this.updateStatus(value);
-    })
   }
 
   // Initialiser les colonnes pour le tableau
@@ -112,7 +106,7 @@ loadEmploye(): void {
   this.loading = true;
   this.employeService.findAll().subscribe(
     (result: EmployeDto[]) => {
-      // Mettre à jour la liste des employés en ajoutant le fullname
+      // Mettre à jour la liste des employés en ajoutant le matricule
       this.employes = result.map((employe) => ({
         ...employe,
         matricule: `${employe.matricule}`
@@ -129,23 +123,6 @@ loadEmploye(): void {
       this.loading = false;
     }
   );
-}
-
-updateStatus(heureEntree: string): void {
-  if (!heureEntree) {
-    this.pointageForm.get('statusId')?.setValue('');
-    return;
-  }
-
-  // Logique de gestion des statuts en fonction de l'heure
-  const [hours, minutes] = heureEntree.split(':').map((v) => parseInt(v, 10));
-  if (hours < 8 || (hours === 8 && minutes <= 30)) {
-    this.pointageForm.get('statusId')?.setValue(1); // Entrée Valide
-  } else if (hours >= 9) {
-    this.pointageForm.get('statusId')?.setValue(3); // Hors Plage Horaire
-  } else {
-    this.pointageForm.get('statusId')?.setValue(2); // Entrée Tardive
-  }
 }
 
 // perment de faire le changement des couleur en fonction des statuts
@@ -175,14 +152,14 @@ getSeverity(couleur: string): "success" | "info" | "warning" | "danger" | "secon
     this.form = this.fb.group({
       employesMatricule: [this.pointage.employesMatricule],
       fullname: [`${this.pointage.employesPrenom} ${this.pointage.employesNom}`|| '', Validators.required],
-      date: [this.pointage.date || '', Validators.required],
+      date: [{ value: null, disabled: true }] , // Initialisation avec un champ désactivé
       heure_entree: [this.pointage.heure_entree || '', Validators.required],
       statusLibelle: [this.pointage.statusLibelle ],
       heure_sortie: [this.pointage.heure_sortie || '', Validators.required],
       duree_travaillee: [this.pointage.duree_travaillee || '', Validators.required],
       statusId: [this.pointage.statusId ],
-
     });
+
   }
 
   loadStatutsOptions() {
@@ -342,6 +319,19 @@ getSeverity(couleur: string): "success" | "info" | "warning" | "danger" | "secon
     this.pointageService.findAll().subscribe(
       (result: PointageDto[]) => {
         this.pointages = result;
+        if (this.pointages.length > 0) {
+          const datePointage = this.pointages[0].date;
+
+          // Assure-toi que la date est bien convertie en objet Date
+          const formattedDate = datePointage ? new Date(datePointage) : null;
+
+          // this.form.patchValue({
+          //   date: formattedDate
+          // });
+
+          console.log('Date dans le formulaire après patchValue:', formattedDate);
+        }
+
         this.loading = false;
       },
       () => {
@@ -355,5 +345,6 @@ getSeverity(couleur: string): "success" | "info" | "warning" | "danger" | "secon
       }
     );
   }
+
 }
 

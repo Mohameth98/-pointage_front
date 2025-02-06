@@ -25,25 +25,38 @@ export class DirecteurMenuComponent implements OnInit {
 
                 items: [
                     {
-                        label: 'Geston du Pointage',
-                        icon: 'pi pi-fw pi-pen-to-square',
+                        label: 'Gestion du Pointage',
+                        icon: 'pi pi-fw pi pi-check',
                         routerLink: ['/directeur/pointage']
                     },
+                    {
+                      label: 'Gestion des Pauses',
+                      icon: 'pi pi-fw pi-pen-to-square',
+                      routerLink: ['/directeur/pause']
+                  },
                     {
                         label: 'Gestion des Absents',
                         icon: 'pi pi-fw pi-users',
                         routerLink: ['/directeur/absent']
                     },
-
-                    {
-                      label: 'Gestion des Demandes',
-                      icon: 'pi pi-fw pi pi-file',
-                      routerLink: ['/directeur/demande-permission']
-                  },
-
                 ],
 
             },
+
+            {
+              label: 'DEMANDES',
+
+              items: [
+
+                  {
+                    label: 'Gestion des Demandes',
+                    icon: 'pi pi-fw pi pi-file',
+                    routerLink: ['/directeur/demande-permission']
+                },
+
+              ],
+
+          },
             {
                 label: 'Paramétres',
                 icon: 'pi pi-fw pi-briefcase',

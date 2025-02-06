@@ -123,14 +123,17 @@
 </div>
 
 <div class="field">
-<label for="date">Date </label>
-<p-calendar
-  id="date"
-  formControlName="date"
-  [showIcon]="true"
-  dateFormat="dd/mm/yy">
-</p-calendar>
+  <label for="date">Date du Pointage</label>
+  <p-calendar
+    id="date"
+    formControlName="date"
+    [showIcon]="true"
+    dateFormat="dd/mm/yy"
+    [disabled]="true">
+  </p-calendar>
 </div>
+
+
 
 <div class="field">
 <label for="time">Heure D'entrée (avec secondes)</label>
@@ -151,7 +154,6 @@
     formControlName="heure_sortie"
     [timeOnly]="true"
     [showSeconds]="true"
-    [hourFormat]="'24'"
     [showIcon]="true">
 </p-calendar>
 </div>
