@@ -14,7 +14,7 @@
       </p-toolbar>
       <div *ngIf="loading" class="loading-message">
           <p>Chargement, veuillez patienter le chargement des Statuts...</p>
-          </div>
+      </div>
 
       <p-table #dt [value]="statuts" [columns]="cols" responsiveLayout="scroll" [rows]="10"
           styleClass="p-datatable-gridlines"
