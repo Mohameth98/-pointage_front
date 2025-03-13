@@ -54,16 +54,16 @@ constructor(
                   label: 'Budget Globale',
                   data: [65, 59, 80, 81, 56, 55, 40],
                   fill: false,
-                  backgroundColor: documentStyle.getPropertyValue('--blue-700'),
-                  borderColor: documentStyle.getPropertyValue('--blue-700'),
+                  backgroundColor: documentStyle.getPropertyValue('--blue-600'),
+                  borderColor: documentStyle.getPropertyValue('--blue-600'),
                   tension: .4
               },
               {
                   label: 'Budget Execute',
                   data: [28, 48, 40, 19, 86, 27, 90],
                   fill: false,
-                  backgroundColor: documentStyle.getPropertyValue('--white-600'),
-                  borderColor: documentStyle.getPropertyValue('--white-600'),
+                  backgroundColor: documentStyle.getPropertyValue('--white-800'),
+                  borderColor: documentStyle.getPropertyValue('--white-800'),
                   tension: .4
               }
           ]

@@ -40,6 +40,14 @@ export class AppTopBarComponent implements OnInit {
     this.items = [
       { separator: true },
       {
+        label: 'Profile',
+        icon: 'pi pi-user',
+        // command: () => {
+        //   this.keycloak.logout(environment.keycloak.redirectUri);
+        //   sessionStorage.clear();
+        // }
+      },
+      {
         label: 'Déconnexion',
         icon: 'pi pi-sign-out',
         command: () => {

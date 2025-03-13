@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { SessionService } from '../../proxy/auth/Session.service';
-
+ 
 @Component({
   selector: 'app-directeur',
   templateUrl: './directeur.component.html',
   styleUrls: ['./directeur.component.scss'],
+  providers:[MessageService]
 })
 export class DirecteurComponent implements OnInit{
 
-  items!: MenuItem[];
+  items!: MenuItem[]; 
 
   chartData: any;
 
